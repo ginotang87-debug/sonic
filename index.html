@@ -8,10 +8,10 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap">
 <style>
 /* Verre premium : aurore bleu-violet-turquoise derrière des cartes en verre givré ; chiffres en avant, tout le reste discret. */
-:root{--bg:#eef1f9;--t:#0c1222;--m:#5d667e;--g1:rgba(255,255,255,.80);--g2:rgba(255,255,255,.46);--bd:rgba(16,24,48,.08);--hl:rgba(255,255,255,.95);--spec:rgba(255,255,255,.65);--sh:rgba(40,60,130,.20);--act:#fff;--fld:rgba(16,24,48,.05);--in:#0c9a62;--out:#e2445c;--a1:#3d6bff;--a2:#8b4dff;--a3:#14b8a6;--c1:#9cb6ff;--c2:#d7b9ff;--c3:#9feee0;--on:#fff;--ring:rgba(61,107,255,.35);
+:root{--ci:#0f8fa0;--co:#e0485e;--cn:#8b4dff;--bg:#eef1f9;--t:#0c1222;--m:#5d667e;--g1:rgba(255,255,255,.80);--g2:rgba(255,255,255,.46);--bd:rgba(16,24,48,.08);--hl:rgba(255,255,255,.95);--spec:rgba(255,255,255,.65);--sh:rgba(40,60,130,.20);--act:#fff;--fld:rgba(16,24,48,.05);--in:#0c9a62;--out:#e2445c;--a1:#3d6bff;--a2:#8b4dff;--a3:#14b8a6;--c1:#9cb6ff;--c2:#d7b9ff;--c3:#9feee0;--on:#fff;--ring:rgba(61,107,255,.35);
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#05060c;--t:#f4f6fc;--m:#8e96ad;--g1:rgba(255,255,255,.085);--g2:rgba(255,255,255,.022);--bd:rgba(255,255,255,.10);--hl:rgba(255,255,255,.20);--spec:rgba(255,255,255,.08);--sh:rgba(0,0,0,.65);--act:rgba(255,255,255,.13);--fld:rgba(255,255,255,.055);--in:#3ee69a;--out:#ff6b81;--a1:#5b8cff;--a2:#a970ff;--a3:#34e0d0;--c1:#1a35d6;--c2:#5a1fc4;--c3:#007a6e;--on:#fff;--ring:rgba(140,120,255,.45);color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#05060c;--t:#f4f6fc;--m:#8e96ad;--g1:rgba(255,255,255,.085);--g2:rgba(255,255,255,.022);--bd:rgba(255,255,255,.10);--hl:rgba(255,255,255,.20);--spec:rgba(255,255,255,.08);--sh:rgba(0,0,0,.65);--act:rgba(255,255,255,.13);--fld:rgba(255,255,255,.055);--in:#3ee69a;--out:#ff6b81;--a1:#5b8cff;--a2:#a970ff;--a3:#34e0d0;--c1:#1a35d6;--c2:#5a1fc4;--c3:#007a6e;--on:#fff;--ring:rgba(140,120,255,.45);color-scheme:dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ci:#1fa6ba;--co:#e5526c;--cn:#9a6cf5;--bg:#05060c;--t:#f4f6fc;--m:#8e96ad;--g1:rgba(255,255,255,.085);--g2:rgba(255,255,255,.022);--bd:rgba(255,255,255,.10);--hl:rgba(255,255,255,.20);--spec:rgba(255,255,255,.08);--sh:rgba(0,0,0,.65);--act:rgba(255,255,255,.13);--fld:rgba(255,255,255,.055);--in:#3ee69a;--out:#ff6b81;--a1:#5b8cff;--a2:#a970ff;--a3:#34e0d0;--c1:#1a35d6;--c2:#5a1fc4;--c3:#007a6e;--on:#fff;--ring:rgba(140,120,255,.45);color-scheme:dark}}
+:root[data-theme="dark"]{--ci:#1fa6ba;--co:#e5526c;--cn:#9a6cf5;--bg:#05060c;--t:#f4f6fc;--m:#8e96ad;--g1:rgba(255,255,255,.085);--g2:rgba(255,255,255,.022);--bd:rgba(255,255,255,.10);--hl:rgba(255,255,255,.20);--spec:rgba(255,255,255,.08);--sh:rgba(0,0,0,.65);--act:rgba(255,255,255,.13);--fld:rgba(255,255,255,.055);--in:#3ee69a;--out:#ff6b81;--a1:#5b8cff;--a2:#a970ff;--a3:#34e0d0;--c1:#1a35d6;--c2:#5a1fc4;--c3:#007a6e;--on:#fff;--ring:rgba(140,120,255,.45);color-scheme:dark}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--t);font:15px/1.45 "Sora",system-ui,-apple-system,"Segoe UI",sans-serif;font-variant-numeric:tabular-nums;min-height:100vh;-webkit-font-smoothing:antialiased}
@@ -157,6 +157,25 @@ body.priv .hbal,body.priv .big,body.priv .chip b,body.priv .row b,body.priv .dg 
 #bPace{position:absolute;top:-3px;bottom:-3px;width:2px;border-radius:2px;background:var(--t);opacity:.55}
 .up{display:flex;justify-content:space-between;gap:8px;padding:10px 12px;margin-bottom:10px;border-radius:16px;background:var(--fld);border:1px solid var(--bd);font-size:13px}
 
+#chR button{padding:9px 8px}
+.cks{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+.cks>div{background:var(--fld);border:1px solid var(--bd);border-radius:16px;padding:10px 12px;min-width:0}
+.cks b{display:block;font-size:15px;letter-spacing:-.01em;overflow-wrap:anywhere}
+.cks .lab{font-size:11.5px}
+@media (max-width:520px){.cks{grid-template-columns:1fr 1fr}}
+.lg{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--m);margin-bottom:6px}
+.lg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.lg .ln{width:16px;height:2px;border-radius:2px;vertical-align:3px}
+#chart{position:relative;touch-action:pan-y}
+#chart svg{display:block}
+#chart text{font-size:11px;fill:var(--m)}
+.lnk{border:0;background:none;color:var(--a2);font-weight:600;cursor:pointer;padding:10px 0 0;font-size:13px}
+.tbl{width:100%;border-collapse:collapse;font-size:13px;margin-top:8px}
+.tbl th,.tbl td{padding:8px 6px;text-align:right;border-top:1px solid var(--bd);white-space:nowrap}
+.tbl th:first-child,.tbl td:first-child{text-align:left}
+.tbl th{color:var(--m);font-weight:600;font-size:12px}
+#chTab{overflow-x:auto}
+body.priv .cks b,body.priv #chart text.v,body.priv .tbl td{filter:blur(8px)}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.50.0/dist/umd/supabase.min.js"></script>
 </head>
@@ -198,7 +217,13 @@ body.priv .hbal,body.priv .big,body.priv .chip b,body.priv .row b,body.priv .dg 
 
   <div class="glass card"><h2><span class="hic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 4v16h16"/><path d="M8 15l4-4 3 3 5-6"/></svg></span><span id="insT">Bilan du mois</span></h2><div class="g2" style="margin:0" id="ins"></div></div>
 
-  <div class="glass card"><h2><span class="hic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 20V10M12 20V4M18 20v-7"/></svg></span><span id="chT">Évolution</span></h2><div class="legend"><span><i class="in-d"></i>Revenus</span><span><i class="out-d"></i>Dépenses</span><span class="net" id="chNet"></span></div><div class="chart" id="chart"></div><div id="chDet"></div></div>
+  <div class="glass card" id="flowC"><h2><span class="hic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 20V10M12 20V4M18 20v-7"/></svg></span><span id="chT">Flux d’argent</span></h2>
+    <div class="pill seg" id="chR" style="background:var(--fld);margin-bottom:12px"></div>
+    <div class="cks" id="chSum"></div>
+    <div class="lg"><span><i style="background:var(--ci)"></i>Revenus (en haut)</span><span><i style="background:var(--co)"></i>Dépenses (en bas)</span><span id="lgNet"><i class="ln" style="background:var(--cn)"></i>Net</span><span><i class="ln" style="background:var(--m);opacity:.6"></i>Dépense moyenne</span></div>
+    <div class="chart" id="chart"></div>
+    <div id="chDet"></div>
+    <button class="lnk" id="chTbl" type="button">Voir en tableau</button><div id="chTab" hidden></div></div>
 
   <div class="g2" style="grid-template-columns:1fr;gap:0">
     <div class="glass card"><h2><span class="hic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="3"/><path d="M3 10h18M16 15h2"/></svg></span>Budget mensuel</h2>
@@ -333,7 +358,6 @@ function render(){
  var wkK=ds(wk(new Date())),wi=sum("in","week",wkK),wo=sum("out","week",wkK),f=fri(new Date());
  $("wIn").textContent=fmt(wi);$("wOut").textContent=fmt(wo);$("wDay").textContent=fmt(sum("out","day",ds(new Date())));$("wLeft").textContent=fmt(wi-wo);$("wLeft").className="big "+(wi-wo>=0?"in":"out");
  $("wFri").textContent="Paie du vendredi "+f.getDate()+" "+MN[f.getMonth()]+(wi>0?" · saisie":" · pas encore saisie");
- $("chT").textContent="Revenus et dépenses · "+{day:"7 derniers jours",week:"8 dernières semaines",month:"6 derniers mois"}[S.per];
  var mk=ds(new Date()).slice(0,7),sp=sum("out","month",mk),bd=S.budget?conv(S.budget.amount,S.budget.cur):0,pc=bd>0?sp/bd*100:0;
  $("bIn").value=S.budget?Math.round(bd*100)/100:"";$("bCur").textContent=S.cur;
  $("bBar").style.width=Math.min(pc,100)+"%";$("bBar").style.background=pc>=100?"var(--out)":pc>=80?"#e8b030":"linear-gradient(90deg,var(--a1),var(--a2))";
@@ -425,19 +449,51 @@ var rsT=null;$("reset").onclick=function(){var b=this;if(!rsT){b.textContent="To
 $("theme").onclick=function(){var r=document.documentElement;r.setAttribute("data-theme",r.getAttribute("data-theme")==="light"?"dark":"light")};
 var CB=[],chSel=-1,HL=60;
 $("q").oninput=function(){HL=60;render()};
-function drawChart(bs){CB=bs;var n=bs.length,sel=chSel<0||chSel>=n?n-1:chSel,data=bs.map(function(x){return{l:x.l,i:sum("in",S.per,x.k),o:sum("out",S.per,x.k)}}),mx=Math.max.apply(null,data.map(function(d){return Math.max(d.i,d.o)}).concat([1])),L=38,W=L+n*54,cw=(W-L)/n,B=190,PH=150,bw=17,tn=0;
- var s='<svg viewBox="0 0 '+W+' 224" width="100%" style="display:block" role="img" aria-label="Graphique des revenus et des dépenses"><defs><linearGradient id="gi" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--in)"/><stop offset="1" style="stop-color:var(--in);stop-opacity:.3"/></linearGradient><linearGradient id="go" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--out)"/><stop offset="1" style="stop-color:var(--out);stop-opacity:.3"/></linearGradient><filter id="gl" x="-60%" y="-30%" width="220%" height="160%"><feGaussianBlur stdDeviation="6"/></filter></defs>';
- [0,.5,1].forEach(function(r){var y=B-r*PH;s+='<line x1="'+L+'" x2="'+W+'" y1="'+y+'" y2="'+y+'" stroke="currentColor" stroke-opacity="'+(r?".1":".25")+'" stroke-dasharray="'+(r?"2 6":"0")+'"/><text x="0" y="'+(y+4)+'">'+(r?cf(mx*r):"0")+'</text>'});
- data.forEach(function(d,j){var cx=L+j*cw+cw/2,hi=d.i/mx*PH,ho=d.o/mx*PH,on=j===sel,op=on?1:.5;tn+=d.i-d.o;
-  if(on){s+='<rect x="'+(cx-cw/2+2)+'" y="12" width="'+(cw-4)+'" height="206" rx="20" fill="currentColor" opacity=".07"/>';if(hi>0)s+='<rect x="'+(cx-bw-1.5)+'" y="'+(B-hi)+'" width="'+bw+'" height="'+hi+'" rx="8" fill="var(--in)" opacity=".55" filter="url(#gl)"/>';if(ho>0)s+='<rect x="'+(cx+1.5)+'" y="'+(B-ho)+'" width="'+bw+'" height="'+ho+'" rx="8" fill="var(--out)" opacity=".55" filter="url(#gl)"/>'}
-  if(hi>0)s+='<rect x="'+(cx-bw-1.5)+'" y="'+(B-hi)+'" width="'+bw+'" height="'+hi+'" rx="8" fill="url(#gi)" opacity="'+op+'"/>';
-  if(ho>0)s+='<rect x="'+(cx+1.5)+'" y="'+(B-ho)+'" width="'+bw+'" height="'+ho+'" rx="8" fill="url(#go)" opacity="'+op+'"/>';
-  s+='<text x="'+cx+'" y="214" text-anchor="middle" style="'+(on?"font-weight:700;fill:var(--t)":"")+'">'+d.l+'</text><rect data-i="'+j+'" x="'+(cx-cw/2)+'" y="0" width="'+cw+'" height="224" fill="transparent" style="cursor:pointer"/>'});
- $("chart").innerHTML=s+"</svg>";
- $("chNet").textContent="Net "+(tn>=0?"+":"−")+fmt(Math.abs(tn));
- var d=data[sel],nt=d.i-d.o;
- $("chDet").innerHTML='<div class="dt">'+(S.per==="week"?"Semaine du ":"")+bs[sel].l+'</div><div class="dg"><div><span class="lab">Revenus</span><b class="in">'+fmt(d.i)+'</b></div><div><span class="lab">Dépenses</span><b class="out">'+fmt(d.o)+'</b></div><div><span class="lab">Net</span><b class="'+(nt>=0?"in":"out")+'">'+(nt>=0?"+":"−")+fmt(Math.abs(nt))+'</b></div></div>'}
-$("chart").onclick=function(e){var i=e.target.getAttribute("data-i");if(i!==null){chSel=+i;drawChart(CB)}};
+var RNG=[["d7","7 j"],["d30","30 j"],["w12","12 sem."],["m12","12 mois"]],rng="w12",MF=["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
+try{rng=localStorage.getItem("sonic-rng")||"w12"}catch(e){}
+function rb(){var c={d7:["day",7],d30:["day",30],w12:["week",12],m12:["month",12]}[rng]||["week",12],per=c[0],n=c[1],now=new Date(),out=[];
+ for(var i=n-1;i>=0;i--){var d,k,l,lf;
+  if(per==="day"){d=new Date(now.getFullYear(),now.getMonth(),now.getDate()-i);k=ds(d);l=n>7?String(d.getDate()):DN[d.getDay()]+" "+d.getDate();lf=DN[d.getDay()]+" "+d.getDate()+" "+MN[d.getMonth()]}
+  else if(per==="week"){d=wk(now);d.setDate(d.getDate()-7*i);k=ds(d);l=d.getDate()+"/"+(d.getMonth()+1);var e=new Date(d);e.setDate(d.getDate()+6);lf="Semaine du "+d.getDate()+" "+MN[d.getMonth()]+" au "+e.getDate()+" "+MN[e.getMonth()]}
+  else{d=new Date(now.getFullYear(),now.getMonth()-i,1);k=ds(d).slice(0,7);l=MN[d.getMonth()].replace(".","");lf=MF[d.getMonth()]+" "+d.getFullYear()}
+  out.push({k:k,l:l,lf:lf})}return{per:per,b:out}}
+function nice(v){if(!(v>0))return 1;var p=Math.pow(10,Math.floor(Math.log10(v))),f=v/p;return(f<=1.5?1:f<=3?2:f<=7?5:10)*p/2}
+function rTop(x,y,w,h,r){r=Math.min(r,h,w/2);return"M"+x+","+(y+h)+"V"+(y+r)+"Q"+x+","+y+" "+(x+r)+","+y+"H"+(x+w-r)+"Q"+(x+w)+","+y+" "+(x+w)+","+(y+r)+"V"+(y+h)+"Z"}
+function rBot(x,y,w,h,r){r=Math.min(r,h,w/2);return"M"+x+","+y+"V"+(y+h-r)+"Q"+x+","+(y+h)+" "+(x+r)+","+(y+h)+"H"+(x+w-r)+"Q"+(x+w)+","+(y+h)+" "+(x+w)+","+(y+h-r)+"V"+y+"Z"}
+var chTab=false;
+function drawChart(){seg("chR",RNG,rng,function(v){rng=v;chSel=-1;try{localStorage.setItem("sonic-rng",v)}catch(e){}drawChart()});
+ var R=rb(),bs=R.b,n=bs.length;CB=bs;$("lgNet").hidden=R.per==="day";var sel=chSel<0||chSel>=n?n-1:chSel;
+ var data=bs.map(function(x){var a=sum("in",R.per,x.k),o=sum("out",R.per,x.k);return{i:a,o:o,n:a-o}});
+ var TI=0,TO=0;data.forEach(function(d){TI+=d.i;TO+=d.o});var rate=TI>0?Math.round((TI-TO)/TI*100):null;
+ $("chSum").innerHTML='<div><span class="lab">Revenus</span><b class="in">'+fmt(TI)+'</b></div><div><span class="lab">Dépenses</span><b class="out">'+fmt(TO)+'</b></div><div><span class="lab">Net</span><b class="'+(TI-TO>=0?"in":"out")+'">'+(TI-TO>=0?"+":"−")+fmt(Math.abs(TI-TO))+'</b></div><div><span class="lab">Gardé</span><b>'+(rate===null?"—":rate+" %")+"</b></div>";
+ var mi=0,mo=0;data.forEach(function(d){if(d.i>mi)mi=d.i;if(d.o>mo)mo=d.o});
+ var W=Math.max(300,Math.round($("chart").clientWidth||340)),H=240,L=44,Rp=6,T=14,B=26,PH=H-T-B;
+ var st=nice(Math.max(mi,mo,1)),ti=Math.ceil(mi/st)*st,to=Math.ceil(mo/st)*st;if(ti+to===0){ti=st;to=st}
+ var s1=PH/(ti+to),mid=T+ti*s1,cw=(W-L-Rp)/n,bw=Math.max(Math.min(cw*.6,24),3),r=Math.min(4,bw/2),avgO=TO/n;
+ var g='<svg width="'+W+'" height="'+H+'" viewBox="0 0 '+W+" "+H+'" role="img" aria-label="Revenus et dépenses par période"><defs><linearGradient id="gci" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--ci)"/><stop offset="1" style="stop-color:var(--ci);stop-opacity:.55"/></linearGradient><linearGradient id="gco" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color:var(--co);stop-opacity:.55"/><stop offset="1" style="stop-color:var(--co)"/></linearGradient></defs>';
+ for(var v=st;v<=ti+1e-9;v+=st){var y=mid-v*s1;g+='<line x1="'+L+'" x2="'+(W-Rp)+'" y1="'+y+'" y2="'+y+'" stroke="currentColor" stroke-opacity=".08" stroke-dasharray="2 5"/><text x="'+(L-8)+'" y="'+(y+4)+'" text-anchor="end">'+cf(v)+"</text>"}
+ for(v=st;v<=to+1e-9;v+=st){y=mid+v*s1;g+='<line x1="'+L+'" x2="'+(W-Rp)+'" y1="'+y+'" y2="'+y+'" stroke="currentColor" stroke-opacity=".08" stroke-dasharray="2 5"/><text x="'+(L-8)+'" y="'+(y+4)+'" text-anchor="end">−'+cf(v)+"</text>"}
+ g+='<rect x="'+(L+sel*cw+1)+'" y="'+(T-6)+'" width="'+(cw-2)+'" height="'+(PH+12)+'" rx="10" fill="currentColor" opacity=".06"/>';
+ data.forEach(function(d,j){var x=L+j*cw+(cw-bw)/2,op=j===sel?1:.7,hi=d.i*s1,ho=d.o*s1;
+  if(hi>.5)g+='<path d="'+rTop(x,mid-hi-1,bw,hi,r)+'" fill="url(#gci)" opacity="'+op+'"/>';
+  if(ho>.5)g+='<path d="'+rBot(x,mid+1,bw,ho,r)+'" fill="url(#gco)" opacity="'+op+'"/>'});
+ g+='<line x1="'+L+'" x2="'+(W-Rp)+'" y1="'+mid+'" y2="'+mid+'" stroke="currentColor" stroke-opacity=".28"/><text x="'+(L-8)+'" y="'+(mid+4)+'" text-anchor="end">0</text>';
+ if(avgO>0){var ya=mid+avgO*s1;g+='<line x1="'+L+'" x2="'+(W-Rp)+'" y1="'+ya+'" y2="'+ya+'" style="stroke:var(--m)" stroke-opacity=".7" stroke-width="1.5" stroke-dasharray="5 4"/>'}
+ var pts=data.map(function(d,j){return[L+j*cw+cw/2,Math.min(Math.max(mid-d.n*s1,T),T+PH)]});
+ if(R.per!=="day")g+='<polyline points="'+pts.map(function(p){return p[0].toFixed(1)+","+p[1].toFixed(1)}).join(" ")+'" fill="none" style="stroke:var(--cn)" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>';
+ if(R.per!=="day")pts.forEach(function(p,j){g+='<circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="'+(j===sel?5:3)+'" style="fill:var(--cn)"'+(j===sel?' stroke="#fff" stroke-width="2"':"")+"/>"});
+ var stp=Math.ceil(n/(W<420?7:10));
+ bs.forEach(function(b,j){if((n-1-j)%stp===0||j===sel)g+='<text x="'+(L+j*cw+cw/2)+'" y="'+(H-8)+'" text-anchor="middle" style="'+(j===sel?"font-weight:700;fill:var(--t)":"")+'">'+b.l+"</text>"});
+ bs.forEach(function(b,j){g+='<rect data-i="'+j+'" x="'+(L+j*cw)+'" y="0" width="'+cw+'" height="'+H+'" fill="transparent" style="cursor:pointer"/>'});
+ $("chart").innerHTML=g+"</svg>";
+ var d=data[sel],top=null,cm={};S.tx.forEach(function(x){if(x.type==="out"&&key(x.date,R.per)===bs[sel].k){var c=x.cat||"Autre";cm[c]=(cm[c]||0)+conv(x.amount,x.cur)}});Object.keys(cm).forEach(function(c){if(!top||cm[c]>cm[top])top=c});
+ $("chDet").innerHTML='<div class="dt">'+bs[sel].lf+'</div><div class="dg"><div><span class="lab">Revenus</span><b class="in">'+fmt(d.i)+'</b></div><div><span class="lab">Dépenses</span><b class="out">'+fmt(d.o)+'</b></div><div><span class="lab">Net</span><b class="'+(d.n>=0?"in":"out")+'">'+(d.n>=0?"+":"−")+fmt(Math.abs(d.n))+"</b></div></div>"+'<div class="lab" style="margin-top:8px">'+(top?"Plus grosse dépense : "+(EM[top]||"")+" "+esc(top)+" ("+fmt(cm[top])+")":"Aucune dépense sur cette période.")+(avgO>0?" · moyenne "+fmt(avgO)+" par "+({day:"jour",week:"semaine",month:"mois"}[R.per]):"")+"</div>";
+ $("chTbl").textContent=chTab?"Masquer le tableau":"Voir en tableau";$("chTab").hidden=!chTab;
+ if(chTab)$("chTab").innerHTML='<table class="tbl"><thead><tr><th>Période</th><th>Revenus</th><th>Dépenses</th><th>Net</th></tr></thead><tbody>'+bs.map(function(b,j){var x=data[j];return"<tr><td>"+b.lf+'</td><td class="in">'+fmt(x.i)+'</td><td class="out">'+fmt(x.o)+'</td><td class="'+(x.n>=0?"in":"out")+'">'+(x.n>=0?"+":"−")+fmt(Math.abs(x.n))+"</td></tr>"}).reverse().join("")+"</tbody></table>"}
+$("chTbl").onclick=function(){chTab=!chTab;drawChart()};
+$("chart").onclick=function(e){var i=e.target.getAttribute("data-i");if(i!==null){chSel=+i;drawChart()}};
+$("chart").onpointermove=function(e){if(e.pointerType!=="mouse")return;var t=e.target.getAttribute&&e.target.getAttribute("data-i");if(t!==null&&t!==undefined&&+t!==chSel){chSel=+t;drawChart()}};
+var rzT=null;window.addEventListener("resize",function(){clearTimeout(rzT);rzT=setTimeout(drawChart,150)});
 var at="out",DOW=["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
 function autoCat(){seg("aT",[["in","Revenu"],["out","Dépense"]],at,function(v){at=v;autoCat()});$("aCat").innerHTML=CATS[at].map(function(c){return"<option>"+c+"</option>"}).join("")}
 function autoD(){var f=$("aF").value,h="";$("aD").hidden=f==="day";if(f==="week")h=DOW.map(function(n,i){return'<option value="'+i+'"'+(i===5?" selected":"")+'>Le '+n+"</option>"}).join("");if(f==="month")for(var i=1;i<=28;i++)h+='<option value="'+i+'">Le '+i+" du mois</option>";$("aD").innerHTML=h}
