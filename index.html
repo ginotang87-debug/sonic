@@ -177,6 +177,17 @@ input[type=search]::-webkit-search-cancel-button{opacity:.6}
 .tbl th{color:var(--m);font-weight:600;font-size:12px}
 #chTab{overflow-x:auto}
 .tabhide{display:none!important}
+:root.gold{--hbg:linear-gradient(100deg,#fff6dc 10%,#e9c46a 55%,#b8862b)}
+:root.gold.lt{--hbg:linear-gradient(100deg,#3a2a08 10%,#8a5d12 55%,#c9962e)}
+:root.gold .hbal{background:var(--hbg);-webkit-background-clip:text;background-clip:text}
+:root.gold .btn:not(.s):not(.d),:root.gold .dock .main,:root.gold .bolt,:root.gold .cc.on,:root.gold .adm{background:linear-gradient(135deg,#f7dc8f,#c9962e 60%,#8a5d12);color:#1a1205}
+:root.gold .hic{color:#c9962e;background:rgba(233,196,106,.14)}
+:root.gold.dk{--c1:#3d2c06;--c2:#2b1d03;--c3:#14100a;--bd:rgba(233,196,106,.16);--hl:rgba(255,230,170,.22);--act:rgba(233,196,106,.16);--g1:rgba(255,236,190,.07);--g2:rgba(255,236,190,.015)}
+:root.gold.dk .seg button.on,:root.gold.dk .dock button.on{color:#f7dc8f}
+.acc{position:relative}
+#mPrem{z-index:12}
+.acc .lk{position:absolute;right:-4px;bottom:-4px;width:20px;height:20px;border-radius:50%;background:var(--bg);display:grid;place-items:center;font-size:11px;box-shadow:0 0 0 1px var(--bd)}
+.prem{font-size:10px;font-weight:700;letter-spacing:.06em;padding:2px 7px;border-radius:99px;background:linear-gradient(135deg,#f7dc8f,#c9962e);color:#1a1205;margin-left:6px;vertical-align:1px}
 body.priv .hbal{letter-spacing:.08em}
 #sBal{cursor:pointer;user-select:none}
 .hero #privH{text-transform:none;letter-spacing:0;font-weight:400}
@@ -314,6 +325,8 @@ body.priv .hbal{letter-spacing:.08em}
     <button class="btn s" id="fDel" hidden>Supprimer cette opération</button>
   </div>
 </div></div>
+
+<div class="ov" id="mPrem" hidden><div class="glass sheet" style="text-align:center"><div style="width:64px;height:64px;margin:4px auto 14px;border-radius:50%;background:linear-gradient(135deg,#f7dc8f,#c9962e 60%,#8a5d12);display:grid;place-items:center;font-size:28px">👑</div><h2>SONIC Gold</h2><div class="lab" style="margin:8px auto 16px;max-width:34ch">Le thème Gold est réservé aux membres Premium. Pour l’activer, contacte l’administrateur de SONIC : il l’active sur ton compte après ton paiement.</div><div class="stack"><button class="btn s" data-close="1">Compris</button></div></div></div>
 
 <div class="ov" id="mCb" hidden><div class="glass sheet"><h2 id="cbT">Limite mensuelle</h2><div class="lab" id="cbH" style="margin-bottom:10px"></div><div class="stack">
   <div class="rt" style="flex-wrap:nowrap"><input class="fld" id="cbA" type="number" inputmode="decimal" min="0" step="any" placeholder="Montant par mois" style="flex:1;width:auto"><span id="cbC"></span></div>
@@ -533,10 +546,10 @@ var fqT=null;$("fQ").addEventListener("input",function(){clearTimeout(fqT);fqT=s
  $("fQh").innerHTML='Compris : <b class="'+ft+'">'+(ft==="in"?"revenu":"dépense")+" "+o.amount.toLocaleString("fr-FR")+" "+fc+"</b> · "+(EM[$("fCat").value]||"")+" "+esc($("fCat").value)+(o.date?" · hier":"")},250)});
 $("fQ").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();$("fAdd").click()}});
 /* accent colours */
-var ACC={violet:["#3d6bff","#8b4dff","#5b8cff","#a970ff"],bleu:["#1f6fff","#14a8d6","#4c8dff","#38c6ef"],vert:["#0f9d7a","#4caf50","#2fc59a","#6fd36f"],orange:["#f2711c","#e8455d","#ff8a3d","#ff6b81"],rose:["#d63384","#8b4dff","#f05aa6","#a970ff"],noir:["#0a0a0c","#4a4a55","#ffffff","#a3a3ad"]};
-function applyAcc(){var a=ACC[S.acc]||ACC.violet,dk=matchMedia("(prefers-color-scheme: dark)").matches,th=document.documentElement.getAttribute("data-theme");if(th)dk=th==="dark"||th==="black";var r=document.documentElement.style;r.setProperty("--a1",dk?a[2]:a[0]);r.setProperty("--a2",dk?a[3]:a[1]);r.setProperty("--ring",(dk?a[3]:a[0])+"66");r.setProperty("--on",S.acc==="noir"&&dk?"#000":"#fff");
- if($("accs"))$("accs").innerHTML=Object.keys(ACC).map(function(k){return'<button type="button" class="acc'+((S.acc||"violet")===k?" on":"")+'" data-acc="'+k+'" aria-label="'+k+'" style="background:linear-gradient(135deg,'+ACC[k][0]+","+ACC[k][1]+')"></button>'}).join("")}
-$("accs").onclick=function(e){var b=e.target.closest("[data-acc]");if(!b)return;S.acc=b.getAttribute("data-acc");applyAcc();save();render()};
+var ACC={violet:["#3d6bff","#8b4dff","#5b8cff","#a970ff"],bleu:["#1f6fff","#14a8d6","#4c8dff","#38c6ef"],vert:["#0f9d7a","#4caf50","#2fc59a","#6fd36f"],orange:["#f2711c","#e8455d","#ff8a3d","#ff6b81"],rose:["#d63384","#8b4dff","#f05aa6","#a970ff"],noir:["#0a0a0c","#4a4a55","#ffffff","#a3a3ad"],gold:["#c9962e","#8a5d12","#f7dc8f","#d4a23a"]};var PREM=false;
+function applyAcc(){var AK=(S.acc==="gold"&&!PREM)?"violet":(S.acc||"violet"),a=ACC[AK]||ACC.violet,dk=matchMedia("(prefers-color-scheme: dark)").matches,th=document.documentElement.getAttribute("data-theme");if(th)dk=th==="dark"||th==="black";var r=document.documentElement.style;r.setProperty("--a1",dk?a[2]:a[0]);r.setProperty("--a2",dk?a[3]:a[1]);r.setProperty("--ring",(dk?a[3]:a[0])+"66");r.setProperty("--on",AK==="noir"&&dk?"#000":AK==="gold"?"#1a1205":"#fff");var cl=document.documentElement.classList;cl.toggle("gold",AK==="gold");cl.toggle("dk",dk);cl.toggle("lt",!dk);
+ if($("accs"))$("accs").innerHTML=Object.keys(ACC).map(function(k){return'<button type="button" class="acc'+(AK===k?" on":"")+'" data-acc="'+k+'" aria-label="'+(k==="gold"?"Gold (Premium)":k)+'" style="background:linear-gradient(135deg,'+ACC[k][0]+","+ACC[k][1]+')">'+(k==="gold"&&!PREM?'<span class="lk">🔒</span>':"")+"</button>"}).join("")}
+$("accs").onclick=function(e){var b=e.target.closest("[data-acc]");if(!b)return;if(b.getAttribute("data-acc")==="gold"&&!PREM){open("mPrem");return}S.acc=b.getAttribute("data-acc");applyAcc();save();render()};
 try{matchMedia("(prefers-color-scheme: dark)").addEventListener("change",applyAcc)}catch(e){}
 /* profile photo */
 $("avB").onclick=function(){$("avF").click()};
@@ -628,11 +641,11 @@ function cloudSave(){if(!CL.id||RO)return;clearTimeout(CL.t);CL.t=setTimeout(flu
 function flush(){if(CL.busy){CL.t=setTimeout(flush,400);return}CL.busy=true;
  sb.from('ledgers').update({name:NAME,data:{tx:MYS.tx,auto:MYS.auto,goals:MYS.goals,cb:MYS.cb,acc:MYS.acc,avatar:MYS.avatar,budget:MYS.budget,cur:MYS.cur,per:MYS.per,rates:MYS.rates},updated_at:new Date().toISOString()}).eq('user_id',CL.id).then(function(r){CL.busy=false;if(r.error){if(!RO)info('⚠ Enregistrement impossible : vérifie ta connexion internet.')}else if(!RO)info('')})}
 function balOf(tx){var r=MYS.rates,t=0;tx.forEach(function(x){t+=(x.type==='in'?1:-1)*x.amount*(r[x.cur]||1)});return t/(r[MYS.cur]||1)}
-function renderAdm(){if(RO)return;$('adm').hidden=!OWN;var a=ADM.filter(function(x){return x.id!==CL.id});var tot=0;a.forEach(function(x){tot+=balOf(x.d.tx||[])});$('admL').innerHTML=(a.length?'<div class="lab" style="margin:4px 0">'+a.length+' compte'+(a.length>1?'s':'')+' · solde cumulé '+fmt(tot)+'</div>'+a.map(function(x){var d=x.d,nm=d.name||'Invité',b=balOf(d.tx||[]);return'<div class="row" data-v="'+esc(x.id)+'" style="cursor:pointer"><div class="ic">'+(d.avatar?'<img alt="" src="'+d.avatar+'" style="width:100%;height:100%;border-radius:14px;object-fit:cover">':esc(nm.charAt(0).toUpperCase()))+'</div><div class="mid"><div>'+esc(nm)+'</div><small>@'+esc(d.login||'')+' · '+(d.tx||[]).length+' opérations</small></div><b class="'+(b>=0?'in':'out')+'">'+fmt(b)+'</b><span class="lab">›</span></div>'}).join(''):'<div class="empty">Aucun ami inscrit pour l’instant. Envoie-leur le lien du site.</div>')+'<button class="btn s" id="admR" style="width:100%;margin-top:10px">Actualiser</button>'}
-async function loadAdm(){if(!OWN)return;var r=await sb.from('ledgers').select('user_id,login,name,data');if(!r.error){ADM=r.data.map(function(z){return{id:z.user_id,d:Object.assign({},z.data||{},{name:z.name,login:z.login})}});renderAdm()}}
-function viewUser(id){var f=ADM.filter(function(x){return x.id===id})[0];if(!f)return;var d=f.d;S={tx:d.tx||[],cur:d.cur||'Ar',per:d.per||'day',flt:'all',rates:d.rates||MYS.rates,budget:d.budget||null,auto:d.auto||[],goals:d.goals||[],cb:d.cb||{},avatar:d.avatar||''};RO=true;VN=d.name||'Invité';document.body.classList.add('ro');info('👁 Compte de <b>'+esc(VN)+'</b> · lecture seule <button class="btn s" id="back" style="padding:6px 12px">Retour</button>');chSel=-1;render();window.scrollTo({top:0,behavior:'smooth'})}
+function renderAdm(){if(RO)return;$('adm').hidden=!OWN;var a=ADM.filter(function(x){return x.id!==CL.id});var tot=0;a.forEach(function(x){tot+=balOf(x.d.tx||[])});$('admL').innerHTML=(a.length?'<div class="lab" style="margin:4px 0">'+a.length+' compte'+(a.length>1?'s':'')+' · solde cumulé '+fmt(tot)+'</div>'+a.map(function(x){var d=x.d,nm=d.name||'Invité',b=balOf(d.tx||[]);return'<div class="row" data-v="'+esc(x.id)+'" style="cursor:pointer"><div class="ic">'+(d.avatar?'<img alt="" src="'+d.avatar+'" style="width:100%;height:100%;border-radius:14px;object-fit:cover">':esc(nm.charAt(0).toUpperCase()))+'</div><div class="mid"><div>'+esc(nm)+(PREMS[x.id]?'<span class="prem">GOLD</span>':'')+'</div><small>@'+esc(d.login||'')+' · '+(d.tx||[]).length+' opérations</small></div><b class="'+(b>=0?'in':'out')+'">'+fmt(b)+'</b><span class="lab">›</span></div>'}).join(''):'<div class="empty">Aucun ami inscrit pour l’instant. Envoie-leur le lien du site.</div>')+'<button class="btn s" id="admR" style="width:100%;margin-top:10px">Actualiser</button>'}
+var PREMS={};async function loadAdm(){if(!OWN)return;var pr=await sb.from('premium').select('user_id');PREMS={};if(pr&&!pr.error)pr.data.forEach(function(z){PREMS[z.user_id]=1});var r=await sb.from('ledgers').select('user_id,login,name,data');if(!r.error){ADM=r.data.map(function(z){return{id:z.user_id,d:Object.assign({},z.data||{},{name:z.name,login:z.login})}});renderAdm()}}
+function viewUser(id){var f=ADM.filter(function(x){return x.id===id})[0];if(!f)return;var d=f.d;S={tx:d.tx||[],cur:d.cur||'Ar',per:d.per||'day',flt:'all',rates:d.rates||MYS.rates,budget:d.budget||null,auto:d.auto||[],goals:d.goals||[],cb:d.cb||{},avatar:d.avatar||''};RO=true;VN=d.name||'Invité';document.body.classList.add('ro');VID=id;info('👁 Compte de <b>'+esc(VN)+'</b> · lecture seule <span style="display:flex;gap:6px;flex-wrap:wrap"><button class="btn s" id="pmT" style="padding:6px 12px">'+(PREMS[id]?'Retirer Gold':'Activer Gold 👑')+'</button><button class="btn s" id="back" style="padding:6px 12px">Retour</button></span>');chSel=-1;render();window.scrollTo({top:0,behavior:'smooth'})}
 function backMe(){S=MYS;RO=false;VN=null;document.body.classList.remove('ro');info('');chSel=-1;render();renderAdm()}
-$('info').onclick=function(e){if(e.target.id==='back')backMe()};
+var VID=null;$('info').onclick=async function(e){if(e.target.id==='back')backMe();if(e.target.id==='pmT'&&VID){var b=e.target,on=!!PREMS[VID];b.disabled=true;var r=on?await sb.from('premium').delete().eq('user_id',VID):await sb.from('premium').insert({user_id:VID});b.disabled=false;if(r.error){toast('Échec : vérifie que le code SQL Premium a été exécuté.');return}if(on)delete PREMS[VID];else PREMS[VID]=1;b.textContent=PREMS[VID]?'Retirer Gold':'Activer Gold 👑';toast(PREMS[VID]?'Gold activé pour '+VN:'Gold retiré pour '+VN)}};
 $('admL').onclick=function(e){if(e.target.id==='admR'){loadAdm();return}var r=e.target.closest('.row');if(r)viewUser(r.getAttribute('data-v'))};
 $('nameB').onclick=function(){var v=$('myName').value.trim();if(v){NAME=v;setBrand();cloudSave();$('mSet').hidden=true;toast('Nom enregistré')}};
 var gMode=null,gId=null;
@@ -684,7 +697,7 @@ async function boot(){
  var r=await sb.from('ledgers').select('*').eq('user_id',u.id).maybeSingle(),x=r.data;
  if(!x){await sb.from('ledgers').insert({user_id:u.id,login:LOGIN,name:NAME||LOGIN,data:{}});x={login:LOGIN,name:NAME||LOGIN,data:{}}}
  var dd=x.data||{};S.tx=dd.tx||[];S.auto=dd.auto||[];S.goals=dd.goals||[];S.cb=dd.cb||{};S.acc=dd.acc||"violet";S.avatar=dd.avatar||"";applyAcc();S.budget=dd.budget||null;S.cur=dd.cur||'Ar';S.per=dd.per||'day';S.rates=dd.rates||S.rates;NAME=x.name||LOGIN;LOGIN=x.login||LOGIN;
- var a=await sb.rpc('is_admin');OWN=!a.error&&a.data===true;
+ var a=await sb.rpc('is_admin');OWN=!a.error&&a.data===true;var pm=await sb.from('premium').select('user_id').eq('user_id',u.id).maybeSingle();PREM=OWN||!!(pm&&pm.data);applyAcc();
  runAuto();
  $('myName').value=NAME;$('myLog').textContent='Mon identifiant : '+LOGIN;$('gate').hidden=true;chSel=-1;render();setTab(TAB);
  if(OWN)loadAdm();
