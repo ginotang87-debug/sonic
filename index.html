@@ -12,6 +12,8 @@
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ci:#1fa6ba;--co:#e5526c;--cn:#9a6cf5;--bg:#05060c;--t:#f4f6fc;--m:#8e96ad;--g1:rgba(255,255,255,.085);--g2:rgba(255,255,255,.022);--bd:rgba(255,255,255,.10);--hl:rgba(255,255,255,.20);--spec:rgba(255,255,255,.08);--sh:rgba(0,0,0,.65);--act:rgba(255,255,255,.13);--fld:rgba(255,255,255,.055);--in:#3ee69a;--out:#ff6b81;--a1:#5b8cff;--a2:#a970ff;--a3:#34e0d0;--c1:#1a35d6;--c2:#5a1fc4;--c3:#007a6e;--on:#fff;--ring:rgba(140,120,255,.45);color-scheme:dark}}
 :root[data-theme="dark"]{--ci:#1fa6ba;--co:#e5526c;--cn:#9a6cf5;--bg:#05060c;--t:#f4f6fc;--m:#8e96ad;--g1:rgba(255,255,255,.085);--g2:rgba(255,255,255,.022);--bd:rgba(255,255,255,.10);--hl:rgba(255,255,255,.20);--spec:rgba(255,255,255,.08);--sh:rgba(0,0,0,.65);--act:rgba(255,255,255,.13);--fld:rgba(255,255,255,.055);--in:#3ee69a;--out:#ff6b81;--a1:#5b8cff;--a2:#a970ff;--a3:#34e0d0;--c1:#1a35d6;--c2:#5a1fc4;--c3:#007a6e;--on:#fff;--ring:rgba(140,120,255,.45);color-scheme:dark}
+:root[data-theme="black"]{--ci:#1fa6ba;--co:#e5526c;--cn:#9a6cf5;--bg:#000;--t:#f4f6fc;--m:#8e96ad;--g1:rgba(255,255,255,.07);--g2:rgba(255,255,255,.02);--bd:rgba(255,255,255,.09);--hl:rgba(255,255,255,.20);--spec:rgba(255,255,255,.04);--sh:rgba(0,0,0,.9);--act:rgba(255,255,255,.13);--fld:rgba(255,255,255,.055);--in:#3ee69a;--out:#ff6b81;--a1:#5b8cff;--a2:#a970ff;--a3:#34e0d0;--c1:#0d1a66;--c2:#2a0f5e;--c3:#003b35;--on:#fff;--ring:rgba(140,120,255,.45);color-scheme:dark}
+:root[data-theme="black"] .aur i{opacity:.22}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--t);font:15px/1.45 "Sora",system-ui,-apple-system,"Segoe UI",sans-serif;font-variant-numeric:tabular-nums;min-height:100vh;-webkit-font-smoothing:antialiased}
@@ -126,7 +128,7 @@ input[type=search]::-webkit-search-cancel-button{opacity:.6}
 .cc-w{display:flex;flex-wrap:wrap;gap:8px}
 .cc{border:1px solid var(--bd);background:var(--fld);border-radius:99px;padding:8px 13px;cursor:pointer;font-size:13.5px;white-space:nowrap;transition:background .2s,color .2s}
 .cc:hover{border-color:var(--a2)}
-.cc.on{background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;border-color:transparent;font-weight:600}
+.cc.on{background:linear-gradient(135deg,var(--a1),var(--a2));color:var(--on);border-color:transparent;font-weight:600}
 #fQuick{justify-content:center;margin:2px 0 4px}
 .eye{position:absolute;top:14px;right:14px;width:38px;height:38px;border-radius:50%;border:1px solid var(--bd);background:var(--fld);color:var(--m);display:grid;place-items:center;cursor:pointer;z-index:2}
 .eye svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
@@ -193,7 +195,7 @@ body.priv .hbal{letter-spacing:.08em}
 .greet{margin:2px 4px 14px}
 .greet #gH{font-size:22px;font-weight:700;letter-spacing:-.02em;text-wrap:balance}
 .greet #gSub{margin-top:2px}
-.adm{font-size:9.5px;letter-spacing:.14em;padding:3px 8px;border-radius:99px;background:linear-gradient(135deg,var(--a1),var(--a2));color:#fff;font-weight:700}
+.adm{font-size:9.5px;letter-spacing:.14em;padding:3px 8px;border-radius:99px;background:linear-gradient(135deg,var(--a1),var(--a2));color:var(--on);font-weight:700}
 .dock{gap:2px;padding:6px 8px}
 .dock button{width:58px;height:54px;border-radius:18px;flex-direction:column;gap:2px;font-size:10px;font-weight:600;color:var(--m);display:flex;align-items:center;justify-content:center}
 .dock button svg{width:21px;height:21px}
@@ -345,11 +347,11 @@ body.priv .hbal{letter-spacing:.08em}
   <div class="stack" style="margin-top:12px">
     <div class="lab">Mon nom affiché en haut</div>
     <input class="fld" id="myName" maxlength="20" placeholder="Mon nom">
+    <button class="btn s" id="nameB">Enregistrer mon nom</button>
     <div class="lab">Photo de profil</div>
     <div class="rt"><button class="btn s" id="avB" type="button" style="flex:1">Choisir une photo</button><button class="btn s" id="avX" type="button" hidden>Retirer</button><input type="file" id="avF" accept="image/*" hidden></div>
     <div class="lab">Couleur du site</div>
     <div class="accs" id="accs"></div>
-    <button class="btn s" id="nameB">Enregistrer mon nom</button>
     <div class="lab" id="myLog"></div>
     <div class="rt"><input class="fld" id="nP" type="password" placeholder="Nouveau mot de passe" style="width:auto;flex:1"><input class="fld" id="nP2" type="password" placeholder="Retape-le" style="width:auto;flex:1"></div>
     <button class="btn s" id="pinB">Changer mon mot de passe</button>
@@ -357,7 +359,8 @@ body.priv .hbal{letter-spacing:.08em}
     <div class="lab">Taux de change (en Ariary)</div>
     <div class="rt">1 € = <input class="fld" id="rE" type="number" step="any"> Ar</div>
     <div class="rt">1 $ = <input class="fld" id="rD" type="number" step="any"> Ar</div>
-    <button class="btn s" id="theme">Changer de thème</button>
+    <div class="lab">Thème</div>
+    <div class="pill seg" id="thS" style="background:var(--fld)"></div>
     <button class="btn s" id="exp">Exporter en CSV</button>
     <textarea id="csv" hidden readonly class="fld" style="height:120px"></textarea>
     <div class="lab">Importer des opérations (même format que l’export)</div>
@@ -530,8 +533,8 @@ var fqT=null;$("fQ").addEventListener("input",function(){clearTimeout(fqT);fqT=s
  $("fQh").innerHTML='Compris : <b class="'+ft+'">'+(ft==="in"?"revenu":"dépense")+" "+o.amount.toLocaleString("fr-FR")+" "+fc+"</b> · "+(EM[$("fCat").value]||"")+" "+esc($("fCat").value)+(o.date?" · hier":"")},250)});
 $("fQ").addEventListener("keydown",function(e){if(e.key==="Enter"){e.preventDefault();$("fAdd").click()}});
 /* accent colours */
-var ACC={violet:["#3d6bff","#8b4dff","#5b8cff","#a970ff"],bleu:["#1f6fff","#14a8d6","#4c8dff","#38c6ef"],vert:["#0f9d7a","#4caf50","#2fc59a","#6fd36f"],orange:["#f2711c","#e8455d","#ff8a3d","#ff6b81"],rose:["#d63384","#8b4dff","#f05aa6","#a970ff"]};
-function applyAcc(){var a=ACC[S.acc]||ACC.violet,dk=matchMedia("(prefers-color-scheme: dark)").matches,th=document.documentElement.getAttribute("data-theme");if(th)dk=th==="dark";var r=document.documentElement.style;r.setProperty("--a1",dk?a[2]:a[0]);r.setProperty("--a2",dk?a[3]:a[1]);r.setProperty("--ring",(dk?a[3]:a[0])+"66");
+var ACC={violet:["#3d6bff","#8b4dff","#5b8cff","#a970ff"],bleu:["#1f6fff","#14a8d6","#4c8dff","#38c6ef"],vert:["#0f9d7a","#4caf50","#2fc59a","#6fd36f"],orange:["#f2711c","#e8455d","#ff8a3d","#ff6b81"],rose:["#d63384","#8b4dff","#f05aa6","#a970ff"],noir:["#0a0a0c","#4a4a55","#ffffff","#a3a3ad"]};
+function applyAcc(){var a=ACC[S.acc]||ACC.violet,dk=matchMedia("(prefers-color-scheme: dark)").matches,th=document.documentElement.getAttribute("data-theme");if(th)dk=th==="dark"||th==="black";var r=document.documentElement.style;r.setProperty("--a1",dk?a[2]:a[0]);r.setProperty("--a2",dk?a[3]:a[1]);r.setProperty("--ring",(dk?a[3]:a[0])+"66");r.setProperty("--on",S.acc==="noir"&&dk?"#000":"#fff");
  if($("accs"))$("accs").innerHTML=Object.keys(ACC).map(function(k){return'<button type="button" class="acc'+((S.acc||"violet")===k?" on":"")+'" data-acc="'+k+'" aria-label="'+k+'" style="background:linear-gradient(135deg,'+ACC[k][0]+","+ACC[k][1]+')"></button>'}).join("")}
 $("accs").onclick=function(e){var b=e.target.closest("[data-acc]");if(!b)return;S.acc=b.getAttribute("data-acc");applyAcc();save();render()};
 try{matchMedia("(prefers-color-scheme: dark)").addEventListener("change",applyAcc)}catch(e){}
@@ -558,7 +561,10 @@ $("rE").onchange=function(){var v=parseFloat(this.value);if(v>0){S.rates["€"]=
 $("rD").onchange=function(){var v=parseFloat(this.value);if(v>0){S.rates["$"]=v;save();render()}};
 $("exp").onclick=function(){var t=$("csv"),l=["date,type,montant,devise,categorie,note"].concat(S.tx.map(function(x){return[x.date,x.type==="in"?"revenu":"depense",x.amount,x.cur,x.cat||"",'"'+(x.note||"").replace(/"/g,'""')+'"'].join(",")}));t.value=l.join("\n");t.hidden=false;t.select()};
 var rsT=null;$("reset").onclick=function(){var b=this;if(!rsT){b.textContent="Touche encore pour tout effacer";rsT=setTimeout(function(){b.textContent="Tout effacer";rsT=null},4000);return}clearTimeout(rsT);rsT=null;b.textContent="Tout effacer";S.tx=[];save();render();$("mSet").hidden=true};
-$("theme").onclick=function(){var r=document.documentElement;r.setAttribute("data-theme",r.getAttribute("data-theme")==="light"?"dark":"light")};
+var THM="auto";try{THM=localStorage.getItem("sonic-theme")||"auto"}catch(e){}
+function applyTheme(){var r=document.documentElement;if(THM==="auto")r.removeAttribute("data-theme");else r.setAttribute("data-theme",THM);var mc=document.querySelector('meta[name="theme-color"]');if(mc)mc.setAttribute("content",THM==="light"?"#eef1f9":"#000000");
+ seg("thS",[["auto","Auto"],["light","Clair"],["dark","Sombre"],["black","Noir"]],THM,function(v){THM=v;try{localStorage.setItem("sonic-theme",v)}catch(e){}applyTheme();applyAcc();render()})}
+applyTheme();
 var CB=[],chSel=-1,HL=60;
 $("q").oninput=function(){HL=60;render()};
 var RNG=[["d7","7 j"],["d30","30 j"],["w12","12 sem."],["m12","12 mois"]],rng="w12",MF=["janvier","février","mars","avril","mai","juin","juillet","août","septembre","octobre","novembre","décembre"];
