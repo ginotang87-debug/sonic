@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&display=swap">
 <style>
 /* Verre premium : aurore bleu-violet-turquoise derrière des cartes en verre givré ; chiffres en avant, tout le reste discret. */
-:root{--k1:#3d6bff;--k2:#8b4dff;--k3:#c6f432;--ci:#0f8fa0;--co:#e0485e;--cn:#8b4dff;--bg:#eef1f9;--t:#0c1222;--m:#5d667e;--g1:rgba(255,255,255,.80);--g2:rgba(255,255,255,.46);--bd:rgba(16,24,48,.08);--hl:rgba(255,255,255,.95);--spec:rgba(255,255,255,.65);--sh:rgba(40,60,130,.20);--act:#fff;--fld:rgba(16,24,48,.05);--in:#0c9a62;--out:#e2445c;--a1:#3d6bff;--a2:#8b4dff;--a3:#14b8a6;--c1:#9cb6ff;--c2:#d7b9ff;--c3:#9feee0;--on:#fff;--ring:rgba(61,107,255,.35);
+:root{--tc:var(--a2);--k1:#3d6bff;--k2:#8b4dff;--k3:#c6f432;--ci:#0f8fa0;--co:#e0485e;--cn:#8b4dff;--bg:#eef1f9;--t:#0c1222;--m:#5d667e;--g1:rgba(255,255,255,.80);--g2:rgba(255,255,255,.46);--bd:rgba(16,24,48,.08);--hl:rgba(255,255,255,.95);--spec:rgba(255,255,255,.65);--sh:rgba(40,60,130,.20);--act:#fff;--fld:rgba(16,24,48,.05);--in:#0c9a62;--out:#e2445c;--a1:#3d6bff;--a2:#8b4dff;--a3:#14b8a6;--c1:#9cb6ff;--c2:#d7b9ff;--c3:#9feee0;--on:#fff;--ring:rgba(61,107,255,.35);
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ci:#1fa6ba;--co:#e5526c;--cn:#9a6cf5;--bg:#05060c;--t:#f4f6fc;--m:#8e96ad;--g1:rgba(255,255,255,.085);--g2:rgba(255,255,255,.022);--bd:rgba(255,255,255,.10);--hl:rgba(255,255,255,.20);--spec:rgba(255,255,255,.08);--sh:rgba(0,0,0,.65);--act:rgba(255,255,255,.13);--fld:rgba(255,255,255,.055);--in:#3ee69a;--out:#ff6b81;--a1:#5b8cff;--a2:#a970ff;--a3:#34e0d0;--c1:#1a35d6;--c2:#5a1fc4;--c3:#007a6e;--on:#fff;--ring:rgba(140,120,255,.45);color-scheme:dark}}
 :root[data-theme="dark"]{--ci:#1fa6ba;--co:#e5526c;--cn:#9a6cf5;--bg:#05060c;--t:#f4f6fc;--m:#8e96ad;--g1:rgba(255,255,255,.085);--g2:rgba(255,255,255,.022);--bd:rgba(255,255,255,.10);--hl:rgba(255,255,255,.20);--spec:rgba(255,255,255,.08);--sh:rgba(0,0,0,.65);--act:rgba(255,255,255,.13);--fld:rgba(255,255,255,.055);--in:#3ee69a;--out:#ff6b81;--a1:#5b8cff;--a2:#a970ff;--a3:#34e0d0;--c1:#1a35d6;--c2:#5a1fc4;--c3:#007a6e;--on:#fff;--ring:rgba(140,120,255,.45);color-scheme:dark}
@@ -178,6 +178,52 @@ input[type=search]::-webkit-search-cancel-button{opacity:.6}
 .tbl th{color:var(--m);font-weight:600;font-size:12px}
 #chTab{overflow-x:auto}
 .tabhide{display:none!important}
+/* ===== style SONIC : vitesse ===== */
+.dock .bub{background:linear-gradient(135deg,var(--k1),var(--k2));color:#fff;box-shadow:0 0 0 6px var(--bg),0 14px 30px -8px var(--k2),inset 0 1px 0 rgba(255,255,255,.45);transition:left .42s cubic-bezier(.5,0,.15,1),top .42s cubic-bezier(.5,0,.15,1),opacity .2s}
+:root.gold .dock .bub{color:#1a1205}
+.dock .bub.go{animation:squash .42s cubic-bezier(.5,0,.15,1)}
+@keyframes squash{35%{transform:scaleX(1.35) scaleY(.82)}70%{transform:scaleX(.92) scaleY(1.08)}}
+.dock .bub::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid var(--k2);opacity:0}
+.dock .bub.hit::after{animation:ring .55s ease-out}
+@keyframes ring{from{opacity:.9;transform:scale(.9)}to{opacity:0;transform:scale(1.7)}}
+.dock .trail{position:absolute;top:-24px;height:50px;border-radius:30px;pointer-events:none;z-index:2;opacity:0;background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--k2) 55%,transparent))}
+.dock .trail.l{background:linear-gradient(270deg,transparent,color-mix(in srgb,var(--k2) 55%,transparent))}
+.dock .trail.run{animation:trail .5s cubic-bezier(.5,0,.15,1)}
+@keyframes trail{0%{opacity:.85}100%{opacity:0}}
+.dock button.on:not(.main){color:var(--a2)}
+.dock::after{background:radial-gradient(64px 46px at calc(var(--bx) + 20px) 32%,color-mix(in srgb,var(--k2) 38%,transparent),transparent 78%)}
+.eb i{background:linear-gradient(135deg,var(--k1),var(--k2));box-shadow:0 0 10px var(--k2)}
+@media (min-width:1000px){.dock .trail{display:none}}
+/* titre qui file dans le sens de la navigation */
+.gw.bo{animation:zo .18s cubic-bezier(.5,0,.75,0) forwards}
+.gw.bi2{animation:zi .45s cubic-bezier(.15,.85,.25,1) both}
+.gw.rv.bo{animation-name:zor}.gw.rv.bi2{animation-name:zir}
+@keyframes zo{to{opacity:0;transform:translateX(-46px) skewX(12deg);filter:blur(5px)}}
+@keyframes zi{from{opacity:0;transform:translateX(56px) skewX(-12deg);filter:blur(6px)}}
+@keyframes zor{to{opacity:0;transform:translateX(46px) skewX(-12deg);filter:blur(5px)}}
+@keyframes zir{from{opacity:0;transform:translateX(-56px) skewX(12deg);filter:blur(6px)}}
+#hist>h2{display:none}
+/* ===== barre à bulle (style vidéo) ===== */
+@property --bx{syntax:'<length>';inherits:true;initial-value:0px}
+.glass.dock{overflow:visible}
+.dock::before{border-radius:inherit}
+.dock .dsl{display:none!important}
+.dock .bub{position:absolute;top:-24px;left:0;width:50px;height:50px;border-radius:50%;display:grid;place-items:center;transition:left .55s cubic-bezier(.3,1.35,.45,1),top .55s cubic-bezier(.3,1.35,.45,1),background .45s,box-shadow .45s,opacity .2s;z-index:3;pointer-events:none}
+.dock .bub svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;animation:pop .5s cubic-bezier(.3,1.45,.5,1) both}
+@keyframes pop{from{transform:scale(.35) rotate(-35deg);opacity:0}}
+.dock button.on:not(.main){background:none}
+.dock button.on:not(.main) svg{opacity:0}
+.dock button:not(.main) svg{transition:opacity .2s}
+.dock::after{content:"";position:absolute;left:-20px;right:-20px;top:-46px;height:120px;background:radial-gradient(64px 46px at calc(var(--bx) + 20px) 32%,color-mix(in srgb,var(--tc) 42%,transparent),transparent 78%);pointer-events:none;z-index:-1;transition:--bx .55s cubic-bezier(.3,1.35,.45,1)}
+@media (min-width:1000px){.dock::after{display:none}.dock .bub{top:0}}
+/* ===== titre de section en fondu flouté ===== */
+.eb{display:flex;align-items:center;gap:7px;font-size:10.5px;letter-spacing:.24em;font-weight:700;color:var(--m);margin-bottom:6px;text-transform:uppercase}
+.eb i{width:7px;height:7px;border-radius:50%;background:var(--tc);box-shadow:0 0 10px var(--tc);transition:background .45s,box-shadow .45s}
+.gw.bo{animation:bo .17s ease-in forwards}
+@keyframes bo{to{opacity:0;filter:blur(9px);transform:scale(.97)}}
+.gw.bi2{animation:bi2 .5s cubic-bezier(.2,.9,.3,1) both}
+@keyframes bi2{from{opacity:0;filter:blur(12px);transform:scale(1.05)}}
+.greet #gH{font-size:24px}
 #accs{gap:8px;flex-wrap:nowrap}#accs .acc{width:34px;height:34px;flex:none}
 #mSet .sec .fld{background:color-mix(in srgb,var(--bg) 45%,transparent)}
 .fld:not(.amt){font-size:16px}
@@ -419,7 +465,7 @@ body.priv .hbal{letter-spacing:.08em}
     <div class="glass pill brand"><span class="bolt"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6z" fill="currentColor"/></svg></span><span id="bn">SONIC</span><small id="bt" hidden>ADMIN</small></div>
     <div class="hr"><div class="glass pill seg" id="cur"></div><button class="glass hbtn" id="bSet" type="button" aria-label="Réglages"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></button></div>
   </header>
-  <div class="greet" data-tab="home"><div class="gw"><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span id="gH">Bonjour</span><small class="adm" id="gAdm" hidden>ADMIN</small></div><div class="lab" id="gSub"></div></div><div class="glass pill seg" id="thQ" aria-label="Thème"></div></div>
+  <div class="greet"><div class="gw"><div class="eb" aria-hidden="true"><i></i><span id="ebT">SONIC · ACCUEIL</span></div><div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap"><span id="gH">Bonjour</span><small class="adm" id="gAdm" hidden>ADMIN</small></div><div class="lab" id="gSub"></div></div><div class="glass pill seg" id="thQ" aria-label="Thème"></div></div>
 
   <div class="glass" id="info" hidden></div>
   <div class="glass" id="rem" data-tab="home" hidden><span>💸 Paie de la semaine pas encore saisie</span><button class="btn" id="remB" style="padding:9px 16px">Ajouter</button></div>
@@ -623,7 +669,10 @@ function placeSl(el){var sl=el.querySelector(".sl"),b=el.querySelector("button.o
  if(p&&(p[0]!==np[0]||p[1]!==np[1])){sl.style.transition="none";sl.style.left=p[0]+"px";sl.style.width=p[1]+"px";void sl.offsetWidth;sl.style.transition=""}
  sl.style.left=np[0]+"px";sl.style.width=np[1]+"px";sl.style.opacity=1;SLP[el.id]=np}
 function placeAll(){document.querySelectorAll(".seg.hs").forEach(placeSl);placeDock()}
-function placeDock(){var d=document.querySelector(".dock"),i=d.querySelector(".dsl"),b=d.querySelector("button.on:not(.main)");if(!i){i=document.createElement("i");i.className="dsl";d.insertBefore(i,d.firstChild)}if(!b||!b.offsetWidth){i.style.opacity=0;return}i.style.opacity=1;i.style.left=b.offsetLeft+"px";i.style.width=b.offsetWidth+"px";i.style.top=b.offsetTop+"px";i.style.height=b.offsetHeight+"px"}
+function placeDock(){var d=document.querySelector(".dock"),b=d.querySelector("button.on:not(.main)"),u=d.querySelector(".bub");if(!u){u=document.createElement("i");u.className="bub";u.setAttribute("aria-hidden","true");d.appendChild(u)}
+ if(!b||!b.offsetWidth){u.style.opacity=0;return}var vert=getComputedStyle(d).flexDirection==="column",cx=b.offsetLeft+b.offsetWidth/2,cy=b.offsetTop+b.offsetHeight/2;u.style.opacity=1;
+ var px=parseFloat(u.style.left);if(vert){u.style.left="-26px";u.style.top=(cy-25)+"px"}else{var nx=cx-25;if(!isNaN(px)&&Math.abs(nx-px)>4&&!RM){var tr=d.querySelector(".trail");if(!tr){tr=document.createElement("i");tr.className="trail";d.appendChild(tr)}var a0=Math.min(px,nx),w0=Math.abs(nx-px)+50;tr.style.left=a0+"px";tr.style.width=w0+"px";tr.classList.toggle("l",nx<px);tr.classList.remove("run");void tr.offsetWidth;tr.classList.add("run");u.classList.remove("go","hit");void u.offsetWidth;u.classList.add("go");clearTimeout(placeDock.t);placeDock.t=setTimeout(function(){u.classList.add("hit")},380)}u.style.left=nx+"px";u.style.top=""}d.style.setProperty("--bx",cx+"px");
+ if(u.getAttribute("data-k")!==b.id){u.setAttribute("data-k",b.id);var sv=b.querySelector("svg");u.innerHTML=sv?sv.outerHTML:""}}
 window.addEventListener("resize",function(){SLP={};placeAll()});
 function seg(id,arr,cur,fn){var el=$(id);el.classList.add("hs");el.innerHTML='<i class="sl"></i>'+arr.map(function(a){var v=Array.isArray(a)?a[0]:a,l=Array.isArray(a)?a[1]:a;return'<button data-v="'+v+'" class="'+(v===cur?"on":"")+'">'+l+"</button>"}).join("");el.onclick=function(e){var b=e.target.closest("[data-v]"),v=b&&b.getAttribute("data-v");if(v)fn(v)};placeSl(el)}
 function dl(id,a,pv,up){var el=$(id);if(PRIV){el.textContent="••";el.style.color="";return}if(!(pv>0)){el.textContent="—";el.style.color="";return}var d=(a-pv)/pv*100;el.textContent=(d>=0?"▲ ":"▼ ")+Math.abs(Math.round(d))+" % vs préc.";el.style.color=((d>=0)===up)?"var(--in)":"var(--out)"}
@@ -688,8 +737,8 @@ function render(){
  if(pIn>0){$("tLeft").textContent=(left<0&&!PRIV?"−":"")+fmt(Math.abs(left));$("tLeft").className="v"+(left<0?" out":"");$("tSub").textContent=(left<0?"Dépassé · ":"")+"sur "+fmt(allow)+" aujourd’hui · "+(dl2>1?dl2+" jours avant la paie":"dernier jour avant la paie")}
  else{$("tLeft").textContent="—";$("tLeft").className="v";$("tSub").textContent="Saisis ta paie du vendredi "+pf.getDate()+" "+MN[pf.getMonth()]+" pour voir combien tu peux dépenser chaque jour."}
  var hr=new Date().getHours(),nmG=(VN||NAME||"").trim();nmG=nmG?nmG.charAt(0).toUpperCase()+nmG.slice(1).toLowerCase():"";
- $("gH").textContent=(VN?"Compte de ":(hr<5||hr>=18?"Bonsoir ":hr<12?"Bonjour ":"Salut "))+nmG+(VN?"":" 👋");
- $("gSub").textContent=VN?"Lecture seule":pIn<=0?"Ajoute ta paie de vendredi pour suivre ton budget du jour.":left<0?"Tu as dépassé ton budget du jour de "+fmt(-left)+". Demain sera plus léger 💪":left<allow*.25?"Il te reste "+fmt(left)+" pour aujourd’hui, vas-y doucement.":"Tu es dans ton budget aujourd’hui 👍";
+ HG=(VN?"Compte de ":(hr<5||hr>=18?"Bonsoir ":hr<12?"Bonjour ":"Salut "))+nmG+(VN?"":" 👋");
+ HS=VN?"Lecture seule":pIn<=0?"Ajoute ta paie de vendredi pour suivre ton budget du jour.":left<0?"Tu as dépassé ton budget du jour de "+fmt(-left)+". Demain sera plus léger 💪":left<allow*.25?"Il te reste "+fmt(left)+" pour aujourd’hui, vas-y doucement.":"Tu es dans ton budget aujourd’hui 👍";setHead(false);
  var upc=[],tot7=0;S.auto.forEach(function(r){if(!r.on)return;for(var i=1;i<=7;i++){var d=new Date(tdy.getFullYear(),tdy.getMonth(),tdy.getDate()+i);if(r.freq==="day"||(r.freq==="week"&&d.getDay()===r.w)||(r.freq==="month"&&d.getDate()===r.w)){if(r.type==="out")tot7+=conv(r.amount,r.cur);if(r.freq!=="day")upc.push(DN[d.getDay()]+" "+d.getDate()+" · "+(r.note||r.cat))}}});
  var UPCH=S.auto.length?'<div class="up"><span>À venir sur 7 jours'+(upc.length?" : "+esc(upc.slice(0,3).join(", ")):"")+'</span><b class="out" style="white-space:nowrap">−'+fmt(tot7)+"</b></div>":"";
  setBrand();drawChart(bs);
@@ -739,7 +788,12 @@ $("toastB").onclick=function(){if(undoFn)undoFn();undoFn=null;$("toast").hidden=
 $("fDel").onclick=function(){var id=edId;$("mAdd").hidden=true;edId=null;delTx(id)};
 $("bSet").onclick=function(){$("avX").hidden=!MYS.avatar;applyAcc();open("mSet")};
 var TAB="home";
-function setTab(t){TAB=t;document.querySelectorAll(".wrap>[data-tab]").forEach(function(el){el.classList.toggle("tabhide",el.getAttribute("data-tab")!==t)});
+var TC={home:"#a78bfa",hist:"#38bdf8",budget:"#f5b83d",goals:"#34d399"},HG="Bonjour",HS="",HD={hist:["Historique","Toutes tes opérations, mois par mois."],budget:["Budget","Garde le contrôle sur tes dépenses."],goals:["Objectifs","Mets de côté pour ce qui compte."]},HN={home:"ACCUEIL",hist:"HISTORIQUE",budget:"BUDGET",goals:"OBJECTIFS"};
+function headTxt(){return TAB==="home"?[HG,HS]:HD[TAB]||[HG,HS]}
+function setHead(anim){var w=document.querySelector(".greet .gw");if(!w)return;function wr(){var h=headTxt();$("gH").textContent=h[0];$("gSub").textContent=h[1];$("ebT").textContent="SONIC · "+(HN[TAB]||"");$("gAdm").hidden=!OWN||!!VN||TAB!=="home"}
+ if(!anim||RM){wr();return}w.classList.remove("bi2");w.classList.add("bo");clearTimeout(setHead.t);setHead.t=setTimeout(function(){wr();w.classList.remove("bo");void w.offsetWidth;w.classList.add("bi2")},170)}
+var TORD={home:0,hist:1,budget:2,goals:3};
+function setTab(t){var chg=t!==TAB,back=(TORD[t]||0)<(TORD[TAB]||0);var gw=document.querySelector(".greet .gw");if(gw)gw.classList.toggle("rv",back);TAB=t;setHead(chg||!setTab.done);setTab.done=1;document.querySelectorAll(".wrap>[data-tab]").forEach(function(el){el.classList.toggle("tabhide",el.getAttribute("data-tab")!==t)});
  [["bTop","home"],["bHist","hist"],["bBud","budget"],["bGoal","goals"]].forEach(function(p){$(p[0]).classList.toggle("on",p[1]===t)});
  try{localStorage.setItem("sonic-tab",t)}catch(e){}window.scrollTo({top:0});if(t==="home"){CHA=true;SPA=true;render()}else if(t==="budget")render();enterTab();requestAnimationFrame(function(){placeAll();runAnim()})}
 $("bTop").onclick=function(){setTab("home")};$("bHist").onclick=function(){setTab("hist")};$("bBud").onclick=function(){setTab("budget")};$("bGoal").onclick=function(){setTab("goals")};
@@ -884,7 +938,7 @@ $("aAdd").onclick=function(){if(RO)return;var a=parseFloat($("aAmt").value);if(!
 $("autoL").onclick=function(e){if(RO)return;var t=e.target.getAttribute("data-tg"),a=e.target.getAttribute("data-ad");if(t)S.auto.forEach(function(r){if(String(r.id)===t){r.on=!r.on;if(r.on){var y=new Date();y.setDate(y.getDate()-1);if(ds(y)>r.last)r.last=ds(y)}}});if(a)S.auto=S.auto.filter(function(r){if(String(r.id)===a){DELS[r.id]=1;return false}return true});if(t||a){runAuto();save();render()}};
 var RO=false,MYS=S,NAME='',LOGIN='',VN=null,ADM=[],CL={busy:false,t:null,id:null},OWN=false;
 var SB_URL="https://ecxtzetubqggbmdliohu.supabase.co",SB_KEY="sb_publishable_R-F1ZH_1ZCePo03VdehDLQ_ZaRARUzD",DOM="@sonic-finances.app",sb=null;
-var BOLT=null;function setBrand(){var cn=$('cardName');if(cn)cn.textContent=VN?(VN||''):'@'+(LOGIN||NAME||'sonic');$('bn').textContent=(VN||NAME||'SONIC').toUpperCase();$('bt').hidden=true;$('gAdm').hidden=!OWN||!!VN;var bo=document.querySelector('.brand .bolt');if(BOLT===null)BOLT=bo.innerHTML;var av=VN?(S.avatar||''):(MYS.avatar||'');bo.innerHTML=av?'<img alt="" src="'+av+'">':BOLT}
+var BOLT=null;function setBrand(){var cn=$('cardName');if(cn)cn.textContent=VN?(VN||''):'@'+(LOGIN||NAME||'sonic');$('bn').textContent=(VN||NAME||'SONIC').toUpperCase();$('bt').hidden=true;$('gAdm').hidden=!OWN||!!VN||TAB!=='home';var bo=document.querySelector('.brand .bolt');if(BOLT===null)BOLT=bo.innerHTML;var av=VN?(S.avatar||''):(MYS.avatar||'');bo.innerHTML=av?'<img alt="" src="'+av+'">':BOLT}
 function info(h){var el=$('info');el.hidden=!h;if(h)el.innerHTML=h}
 var LOADED=false,V=0,DELS={},CONDOK=true;
 function loadFail(){gateMode('au');$('gTabs').hidden=true;$('gLog').hidden=true;$('gSet').hidden=true;$('gS').innerHTML='Impossible de charger tes données. Vérifie ta connexion internet puis réessaie. Rien n’a été modifié.<br><button class="btn" type="button" style="margin-top:14px;padding:12px 22px" onclick="location.reload()">Réessayer</button>'}
