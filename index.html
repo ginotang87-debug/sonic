@@ -89,7 +89,7 @@ svg text{fill:var(--m);font-size:10.5px;font-family:inherit}
 .stack{display:grid;gap:10px}
 .dock{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:5;padding:8px;gap:10px;border-radius:999px}
 .dock button{width:48px;height:48px;border-radius:50%;border:0;background:none;color:var(--t);cursor:pointer;display:grid;place-items:center}
-.dock button:hover{background:var(--fld)}
+@media (hover:hover){.dock button:not(.on):not(.main):hover{background:var(--fld)}}
 .dock svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .dock .main{width:60px;height:60px;color:var(--on);background:linear-gradient(135deg,var(--a1),var(--a2));box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 0 0 6px color-mix(in srgb,var(--a2) 14%,transparent),0 12px 30px -8px var(--ring)}
 .dock .main:hover{background:linear-gradient(135deg,var(--a1),var(--a2));filter:brightness(1.08)}
@@ -97,7 +97,7 @@ svg text{fill:var(--m);font-size:10.5px;font-family:inherit}
 .ov[hidden]{display:none}
 .sheet{width:100%;max-width:520px;margin:0 8px calc(8px + env(safe-area-inset-bottom,0px));padding:22px 20px;max-height:88vh;overflow:auto;animation:up .38s cubic-bezier(.2,.9,.3,1);border-radius:30px}
 @keyframes up{from{transform:translateY(50px);opacity:0}}
-.sheet h2{margin:0 0 4px;font-size:18px}
+.sheet h2{margin:0 0 4px;font-size:18px;padding-right:46px}
 .rt{display:flex;align-items:center;gap:8px;flex-wrap:wrap;color:var(--m)}
 .rt input{width:110px}
 .legend{display:flex;gap:16px;align-items:center;font-size:13px;color:var(--m);margin-bottom:8px;flex-wrap:wrap}
@@ -178,12 +178,20 @@ input[type=search]::-webkit-search-cancel-button{opacity:.6}
 .tbl th{color:var(--m);font-weight:600;font-size:12px}
 #chTab{overflow-x:auto}
 .tabhide{display:none!important}
+/* fermer les fenêtres (app installée) */
+.ov .sheet{position:relative;touch-action:pan-y}
+.shx{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;border:1px solid var(--bd);background:var(--fld);color:var(--t);display:grid;place-items:center;cursor:pointer;z-index:5}
+.shx svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round}
+.grab{display:block;width:44px;height:5px;border-radius:9px;background:color-mix(in srgb,var(--t) 28%,transparent);margin:-8px auto 12px}
+.ov .sheet.drag{transition:none;animation:none}
+.ov .sheet.back2{transition:transform .3s cubic-bezier(.2,.9,.3,1)}
+@media (min-width:1000px){.grab{display:none}}
 /* bulle seulement pendant le clic */
 .dock .bub{opacity:0!important;transform:translateY(24px) scale(.55);transition:left .42s cubic-bezier(.5,0,.15,1),top .42s cubic-bezier(.5,0,.15,1),opacity .28s,transform .38s cubic-bezier(.3,1.4,.5,1)!important}
 .dock.live .bub{opacity:1!important;transform:none}
 .dock::after{opacity:0;transition:opacity .35s}
 .dock.live::after{opacity:1}
-.dock button.on:not(.main){color:var(--a2);background:color-mix(in srgb,var(--a2) 15%,transparent)!important;border-radius:18px}
+.dock button.on:not(.main){color:var(--a2);background:none!important}
 @media (min-width:1000px){.dock .bub{transform:translateX(24px) scale(.55)}}
 /* ===== style SONIC : vitesse ===== */
 .dock .bub{background:linear-gradient(135deg,var(--k1),var(--k2));color:#fff;box-shadow:0 0 0 6px var(--bg),0 14px 30px -8px var(--k2),inset 0 1px 0 rgba(255,255,255,.45);transition:left .42s cubic-bezier(.5,0,.15,1),top .42s cubic-bezier(.5,0,.15,1),opacity .2s}
@@ -629,6 +637,7 @@ body.priv .hbal{letter-spacing:.08em}
       <button class="btn s" id="outB" type="button">Se déconnecter</button>
     </div>
     <button class="btn s" data-close="1" type="button" style="margin-top:6px">Fermer</button>
+    <div class="lab" style="text-align:center;font-size:11.5px;margin-top:4px">SONIC · version 2026.10.25-7</div>
   </div>
 </div></div>
 
@@ -1045,6 +1054,17 @@ async function boot(){
 document.querySelectorAll(".ov .sheet").forEach(function(sh){sh.setAttribute("role","dialog");sh.setAttribute("aria-modal","true")});
 document.addEventListener("keydown",function(e){if(e.key==="Escape"){var o=[].slice.call(document.querySelectorAll(".ov")).filter(function(x){return!x.hidden}).pop();if(o)o.hidden=true;return}
  if((e.key==="Enter"||e.key===" ")&&e.target&&e.target.getAttribute&&e.target.getAttribute("role")==="button"&&e.target.tagName!=="BUTTON"){e.preventDefault();e.target.click()}});
+(function(){var X='<svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+ document.querySelectorAll(".ov").forEach(function(ov){var sh=ov.querySelector(".sheet");if(!sh||sh.querySelector(".shx"))return;
+  var g=document.createElement("i");g.className="grab";g.setAttribute("aria-hidden","true");sh.insertBefore(g,sh.firstChild);
+  var b=document.createElement("button");b.type="button";b.className="shx";b.setAttribute("aria-label","Fermer");b.innerHTML=X;b.onclick=function(){ov.hidden=true};sh.insertBefore(b,sh.firstChild);
+  var y0=null,dy=0,act=false;
+  sh.addEventListener("touchstart",function(e){if(sh.scrollTop>0||e.target.closest("input,textarea,select,.cc-w,.seg,.ops"))return;y0=e.touches[0].clientY;dy=0;act=false},{passive:true});
+  sh.addEventListener("touchmove",function(e){if(y0===null)return;dy=e.touches[0].clientY-y0;if(!act&&dy>10){act=true;sh.classList.add("drag")}if(act){if(dy>0)sh.style.transform="translateY("+dy+"px)";e.cancelable&&e.preventDefault()}},{passive:false});
+  sh.addEventListener("touchend",function(){if(y0===null)return;y0=null;sh.classList.remove("drag");if(!act)return;
+   if(dy>110){sh.classList.add("back2");sh.style.transform="translateY(110%)";setTimeout(function(){ov.hidden=true;sh.classList.remove("back2");sh.style.transform=""},260)}
+   else{sh.classList.add("back2");sh.style.transform="";setTimeout(function(){sh.classList.remove("back2")},300)}});
+ })})();
 $("remB").onclick=function(){$("bAdd").onclick();ft="in";setDate();fm()};
 boot().catch(function(){gateMode('au');$('gS').textContent='Connexion au serveur impossible. Vérifie ta connexion internet puis recharge la page.'});
 render();
