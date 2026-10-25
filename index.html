@@ -178,11 +178,18 @@ input[type=search]::-webkit-search-cancel-button{opacity:.6}
 .tbl th{color:var(--m);font-weight:600;font-size:12px}
 #chTab{overflow-x:auto}
 .tabhide{display:none!important}
+/* bulle seulement pendant le clic */
+.dock .bub{opacity:0!important;transform:translateY(24px) scale(.55);transition:left .42s cubic-bezier(.5,0,.15,1),top .42s cubic-bezier(.5,0,.15,1),opacity .28s,transform .38s cubic-bezier(.3,1.4,.5,1)!important}
+.dock.live .bub{opacity:1!important;transform:none}
+.dock::after{opacity:0;transition:opacity .35s}
+.dock.live::after{opacity:1}
+.dock button.on:not(.main){color:var(--a2);background:color-mix(in srgb,var(--a2) 15%,transparent)!important;border-radius:18px}
+@media (min-width:1000px){.dock .bub{transform:translateX(24px) scale(.55)}}
 /* ===== style SONIC : vitesse ===== */
 .dock .bub{background:linear-gradient(135deg,var(--k1),var(--k2));color:#fff;box-shadow:0 0 0 6px var(--bg),0 14px 30px -8px var(--k2),inset 0 1px 0 rgba(255,255,255,.45);transition:left .42s cubic-bezier(.5,0,.15,1),top .42s cubic-bezier(.5,0,.15,1),opacity .2s}
 :root.gold .dock .bub{color:#1a1205}
 .dock .bub.go{animation:squash .42s cubic-bezier(.5,0,.15,1)}
-@keyframes squash{35%{transform:scaleX(1.35) scaleY(.82)}70%{transform:scaleX(.92) scaleY(1.08)}}
+@keyframes squash{35%{scale:1.35 .82}70%{scale:.92 1.08}}
 .dock .bub::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid var(--k2);opacity:0}
 .dock .bub.hit::after{animation:ring .55s ease-out}
 @keyframes ring{from{opacity:.9;transform:scale(.9)}to{opacity:0;transform:scale(1.7)}}
@@ -212,7 +219,7 @@ input[type=search]::-webkit-search-cancel-button{opacity:.6}
 .dock .bub svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;animation:pop .5s cubic-bezier(.3,1.45,.5,1) both}
 @keyframes pop{from{transform:scale(.35) rotate(-35deg);opacity:0}}
 .dock button.on:not(.main){background:none}
-.dock button.on:not(.main) svg{opacity:0}
+.dock.live button.on:not(.main) svg{opacity:0}
 .dock button:not(.main) svg{transition:opacity .2s}
 .dock::after{content:"";position:absolute;left:-20px;right:-20px;top:-46px;height:120px;background:radial-gradient(64px 46px at calc(var(--bx) + 20px) 32%,color-mix(in srgb,var(--tc) 42%,transparent),transparent 78%);pointer-events:none;z-index:-1;transition:--bx .55s cubic-bezier(.3,1.35,.45,1)}
 @media (min-width:1000px){.dock::after{display:none}.dock .bub{top:0}}
@@ -669,10 +676,13 @@ function placeSl(el){var sl=el.querySelector(".sl"),b=el.querySelector("button.o
  if(p&&(p[0]!==np[0]||p[1]!==np[1])){sl.style.transition="none";sl.style.left=p[0]+"px";sl.style.width=p[1]+"px";void sl.offsetWidth;sl.style.transition=""}
  sl.style.left=np[0]+"px";sl.style.width=np[1]+"px";sl.style.opacity=1;SLP[el.id]=np}
 function placeAll(){document.querySelectorAll(".seg.hs").forEach(placeSl);placeDock()}
-function placeDock(){var d=document.querySelector(".dock"),b=d.querySelector("button.on:not(.main)"),u=d.querySelector(".bub");if(!u){u=document.createElement("i");u.className="bub";u.setAttribute("aria-hidden","true");d.appendChild(u)}
+var DOCKANIM=false;
+function placeDock(){var live=DOCKANIM&&!RM;DOCKANIM=false;var d=document.querySelector(".dock"),b=d.querySelector("button.on:not(.main)"),u=d.querySelector(".bub");if(!u){u=document.createElement("i");u.className="bub";u.setAttribute("aria-hidden","true");d.appendChild(u)}
  if(!b||!b.offsetWidth){u.style.opacity=0;return}var vert=getComputedStyle(d).flexDirection==="column",cx=b.offsetLeft+b.offsetWidth/2,cy=b.offsetTop+b.offsetHeight/2;u.style.opacity=1;
- var px=parseFloat(u.style.left);if(vert){u.style.left="-26px";u.style.top=(cy-25)+"px"}else{var nx=cx-25;if(!isNaN(px)&&Math.abs(nx-px)>4&&!RM){var tr=d.querySelector(".trail");if(!tr){tr=document.createElement("i");tr.className="trail";d.appendChild(tr)}var a0=Math.min(px,nx),w0=Math.abs(nx-px)+50;tr.style.left=a0+"px";tr.style.width=w0+"px";tr.classList.toggle("l",nx<px);tr.classList.remove("run");void tr.offsetWidth;tr.classList.add("run");u.classList.remove("go","hit");void u.offsetWidth;u.classList.add("go");clearTimeout(placeDock.t);placeDock.t=setTimeout(function(){u.classList.add("hit")},380)}u.style.left=nx+"px";u.style.top=""}d.style.setProperty("--bx",cx+"px");
- if(u.getAttribute("data-k")!==b.id){u.setAttribute("data-k",b.id);var sv=b.querySelector("svg");u.innerHTML=sv?sv.outerHTML:""}}
+ var px=parseFloat(u.style.left);if(vert){u.style.left="-26px";u.style.top=(cy-25)+"px"}else{var nx=cx-25;if(live&&!isNaN(px)&&Math.abs(nx-px)>4){var tr=d.querySelector(".trail");if(!tr){tr=document.createElement("i");tr.className="trail";d.appendChild(tr)}var a0=Math.min(px,nx),w0=Math.abs(nx-px)+50;tr.style.left=a0+"px";tr.style.width=w0+"px";tr.classList.toggle("l",nx<px);tr.classList.remove("run");void tr.offsetWidth;tr.classList.add("run");u.classList.remove("go","hit");void u.offsetWidth;u.classList.add("go");clearTimeout(placeDock.t);placeDock.t=setTimeout(function(){u.classList.add("hit")},380)}u.style.left=nx+"px";u.style.top=""}d.style.setProperty("--bx",cx+"px");
+ if(u.getAttribute("data-k")!==b.id){u.setAttribute("data-k",b.id);var sv=b.querySelector("svg");u.innerHTML=sv?sv.outerHTML:""}
+ if(live){d.classList.add("live");clearTimeout(placeDock.e);placeDock.e=setTimeout(function(){d.classList.remove("live")},950)}}
+document.querySelector(".dock").addEventListener("click",function(e){var b=e.target.closest("button");if(b&&!b.classList.contains("main"))DOCKANIM=true},true);
 window.addEventListener("resize",function(){SLP={};placeAll()});
 function seg(id,arr,cur,fn){var el=$(id);el.classList.add("hs");el.innerHTML='<i class="sl"></i>'+arr.map(function(a){var v=Array.isArray(a)?a[0]:a,l=Array.isArray(a)?a[1]:a;return'<button data-v="'+v+'" class="'+(v===cur?"on":"")+'">'+l+"</button>"}).join("");el.onclick=function(e){var b=e.target.closest("[data-v]"),v=b&&b.getAttribute("data-v");if(v)fn(v)};placeSl(el)}
 function dl(id,a,pv,up){var el=$(id);if(PRIV){el.textContent="••";el.style.color="";return}if(!(pv>0)){el.textContent="—";el.style.color="";return}var d=(a-pv)/pv*100;el.textContent=(d>=0?"▲ ":"▼ ")+Math.abs(Math.round(d))+" % vs préc.";el.style.color=((d>=0)===up)?"var(--in)":"var(--out)"}
