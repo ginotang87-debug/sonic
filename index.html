@@ -177,6 +177,25 @@ input[type=search]::-webkit-search-cancel-button{opacity:.6}
 .tbl th{color:var(--m);font-weight:600;font-size:12px}
 #chTab{overflow-x:auto}
 .tabhide{display:none!important}
+/* ===== version ordinateur (automatique dès 1000 px de large) ===== */
+@media (min-width:1000px){
+ body{padding-left:110px}
+ .wrap{max-width:1240px;padding-block:26px 48px;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:18px;align-items:start;grid-auto-flow:row dense}
+ .wrap>*{grid-column:1/-1}
+ .wrap>.hero{grid-column:1/8;grid-row:span 3;margin-bottom:14px}
+ .wrap>#todayC,.wrap>#per,.wrap>.g2[data-tab="home"]{grid-column:8/-1}
+ .wrap>#wkC{grid-column:1/7}.wrap>#insC{grid-column:7/-1}
+ .wrap>#budC{grid-column:1/7}.wrap>#catC{grid-column:7/-1;grid-row:span 2}.wrap>#autoC{grid-column:1/7}
+ .wrap>#goalC{grid-column:2/12}
+ .dock{left:24px;top:50%;bottom:auto;transform:translateY(-50%);flex-direction:column;padding:10px 8px;border-radius:30px;gap:6px}
+ .dock .main{margin:6px 0}
+ .toast{bottom:28px}
+ .ov{align-items:center}
+ .sheet{margin:0 16px;max-height:86vh}
+ .hbal{font-size:64px}
+ .greet{margin-top:6px}
+}
+@media (min-width:1400px){.wrap{max-width:1320px}}
 /* ===== carte bancaire ===== */
 .glass.hero{background:linear-gradient(135deg,var(--k1) 0%,var(--k2) 100%);border-color:rgba(255,255,255,.22);color:#fff;padding:58px 22px 18px;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 26px 50px -22px var(--k2)}
 .glass.hero::before{background:radial-gradient(120% 70% at 0% 0%,rgba(255,255,255,.28),transparent 55%),radial-gradient(60% 60% at 100% 100%,rgba(0,0,0,.22),transparent 70%)}
@@ -324,7 +343,7 @@ body.priv .hbal{letter-spacing:.08em}
     <div class="glass card" style="margin:0"><div class="lab" id="lOut">Dépenses</div><div class="big out" id="sOut">–</div><span class="dl" id="dOut"></span></div>
   </div>
 
-  <div class="glass card" data-tab="home"><h2><span class="hic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>Ma semaine</h2>
+  <div class="glass card" id="wkC" data-tab="home"><h2><span class="hic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>Ma semaine</h2>
     <div class="g2" style="margin:0">
       <div><div class="big in" id="wIn">–</div><div class="lab" id="wFri">Paie</div></div>
       <div><div class="big out" id="wOut">–</div><div class="lab">Dépensé cette semaine</div></div>
@@ -333,7 +352,7 @@ body.priv .hbal{letter-spacing:.08em}
     </div>
   </div>
 
-  <div class="glass card" data-tab="home"><h2><span class="hic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 4v16h16"/><path d="M8 15l4-4 3 3 5-6"/></svg></span><span id="insT">Bilan du mois</span></h2><div class="g2" style="margin:0" id="ins"></div></div>
+  <div class="glass card" id="insC" data-tab="home"><h2><span class="hic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 4v16h16"/><path d="M8 15l4-4 3 3 5-6"/></svg></span><span id="insT">Bilan du mois</span></h2><div class="g2" style="margin:0" id="ins"></div></div>
 
   <div class="glass card" id="flowC" data-tab="home"><h2><span class="hic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 20V10M12 20V4M18 20v-7"/></svg></span><span id="chT">Flux d’argent</span></h2>
     <div class="pill seg" id="chR" style="background:var(--fld);margin-bottom:12px"></div>
@@ -343,14 +362,14 @@ body.priv .hbal{letter-spacing:.08em}
     <div id="chDet"></div>
     <button class="lnk" id="chTbl" type="button">Voir en tableau</button><div id="chTab" hidden></div></div>
 
-    <div class="glass card" data-tab="budget"><h2><span class="hic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="3"/><path d="M3 10h18M16 15h2"/></svg></span>Budget mensuel</h2>
+    <div class="glass card" id="budC" data-tab="budget"><h2><span class="hic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="3"/><path d="M3 10h18M16 15h2"/></svg></span>Budget mensuel</h2>
       <div class="rt">Budget <input class="fld" id="bIn" type="number" step="any" min="0" placeholder="0"> <span id="bCur"></span></div>
       <div class="bar" style="margin:14px 0 8px"><div id="bBar"></div><i id="bPace" hidden></i></div><div class="lab" id="bTxt"></div></div>
-    <div class="glass card" data-tab="budget"><h2><span class="hic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9h-9z"/><path d="M15 3.5A9 9 0 0 1 20.5 9H15z"/></svg></span>Dépenses du mois par catégorie</h2><div class="lab" style="margin:-6px 0 10px">Touche une catégorie pour lui fixer une limite mensuelle.</div><div id="cats"></div></div>
+    <div class="glass card" id="catC" data-tab="budget"><h2><span class="hic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9h-9z"/><path d="M15 3.5A9 9 0 0 1 20.5 9H15z"/></svg></span>Dépenses du mois par catégorie</h2><div class="lab" style="margin:-6px 0 10px">Touche une catégorie pour lui fixer une limite mensuelle.</div><div id="cats"></div></div>
     <div class="glass card" id="goalC" data-tab="goals"><h2><span class="hic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span>Objectifs d’épargne</h2><div id="goalL"></div><button class="btn s" id="goalB" style="width:100%;margin-top:10px">+ Nouvel objectif</button></div>
 
   <div class="glass card" id="adm" data-tab="home" hidden><h2><span class="hic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></span>Administration</h2><div class="lab" style="margin-bottom:6px">Touche un compte pour voir toutes ses opérations.</div><div id="admL"></div></div>
-  <div class="glass card" data-tab="budget"><h2><span class="hic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg></span>Automatisations</h2><div id="autoL"></div><button class="btn s" id="autoB" style="width:100%;margin-top:10px">+ Nouvelle automatisation</button></div>
+  <div class="glass card" id="autoC" data-tab="budget"><h2><span class="hic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg></span>Automatisations</h2><div id="autoL"></div><button class="btn s" id="autoB" style="width:100%;margin-top:10px">+ Nouvelle automatisation</button></div>
   <div class="glass card" id="hist" data-tab="hist"><h2><span class="hic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>Historique</h2><div class="pill seg" id="flt" style="background:var(--fld);margin-bottom:8px"></div><div class="fc" id="fcat"></div><input class="fld" id="q" type="search" placeholder="Rechercher une note ou une catégorie" style="margin-bottom:6px"><div id="list"></div></div>
 </div>
 
@@ -701,7 +720,7 @@ function drawChart(){var AN=CHA&&!RM;CHA=false;seg("chR",RNG,rng,function(v){rng
  bs.forEach(function(b,j){g+='<rect data-i="'+j+'" x="'+(L+j*cw)+'" y="0" width="'+cw+'" height="'+H+'" fill="transparent" style="cursor:pointer"/>'});
  var dd0=data[sel],yT=dd0.i>0?mid-dd0.i*s1:mid,tx=Math.min(Math.max(L+sel*cw+cw/2,62),W-62),ty=Math.max(yT-10,46);
  g+="</svg>"+'<div class="tip" style="left:'+tx.toFixed(0)+"px;top:"+ty.toFixed(0)+'px"><b>'+bs[sel].l+"</b>"+(dd0.i>0?'<span class="ti">+'+fmt(dd0.i)+"</span>":"")+(dd0.i>0&&dd0.o>0?" · ":"")+(dd0.o>0?'<span class="to">−'+fmt(dd0.o)+"</span>":"")+(dd0.i<=0&&dd0.o<=0?"Rien":"")+"</div>";
- $("chart").innerHTML=g;$("chart").classList.toggle("anim",AN);
+ $("chart").innerHTML=g;$("chart").classList.toggle("anim",AN);var tp=$("chart").querySelector(".tip");if(tp){var tw=tp.offsetWidth/2+4;tp.style.left=Math.min(Math.max(tx,tw),W-tw)+"px"}
  var d=data[sel],top=null,cm={};S.tx.forEach(function(x){if(x.type==="out"&&key(x.date,R.per)===bs[sel].k){var c=x.cat||"Autre";cm[c]=(cm[c]||0)+conv(x.amount,x.cur)}});Object.keys(cm).forEach(function(c){if(!top||cm[c]>cm[top])top=c});
  $("chDet").innerHTML='<div class="dt">'+bs[sel].lf+'</div><div class="dg"><div><span class="lab">Revenus</span><b class="in">'+fmt(d.i)+'</b></div><div><span class="lab">Dépenses</span><b class="out">'+fmt(d.o)+'</b></div><div><span class="lab">Net</span><b class="'+(d.n>=0?"in":"out")+'">'+(d.n>=0?"+":"−")+fmt(Math.abs(d.n))+"</b></div></div>"+'<div class="lab" style="margin-top:8px">'+(top?"Plus grosse dépense : "+(EM[top]||"")+" "+esc(top)+" ("+fmt(cm[top])+")":"Aucune dépense sur cette période.")+(avgO>0?" · moyenne "+fmt(avgO)+" par "+({day:"jour",week:"semaine",month:"mois"}[R.per]):"")+"</div>";
  $("chTbl").textContent=chTab?"Masquer le tableau":"Voir en tableau";$("chTab").hidden=!chTab;
