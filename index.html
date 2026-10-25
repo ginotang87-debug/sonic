@@ -688,7 +688,7 @@ html.af .dock .bub svg{animation-duration:.2s}
       <button class="btn s" id="outB" type="button">Se déconnecter</button>
     </div>
     <button class="btn s" data-close="1" type="button" style="margin-top:6px">Fermer</button>
-    <div class="lab" style="text-align:center;font-size:11.5px;margin-top:4px">SONIC · version 2026.10.25-11</div>
+    <div class="lab" style="text-align:center;font-size:11.5px;margin-top:4px">SONIC · version 2026.10.25-12</div>
   </div>
 </div></div>
 
@@ -832,7 +832,7 @@ $("fQuick").onclick=function(e){var v=e.target.closest("[data-q]");if(v)$("fAmt"
 $("fCats").onclick=function(e){var v=e.target.closest("[data-c]");if(v){$("fCat").value=v.getAttribute("data-c");fx()}};
 $("fRec").onclick=function(e){var v=e.target.closest("[data-n]");if(v){$("fNote").value=v.getAttribute("data-n");var c=v.getAttribute("data-nc");if(c&&CATS[ft].indexOf(c)>=0)$("fCat").value=c;fx()}};
 $("dT").onclick=function(){$("fDate").value=ds(new Date())};$("dY").onclick=function(){var d=new Date();d.setDate(d.getDate()-1);$("fDate").value=ds(d)};
-var RM=false,ASP="fast";try{RM=matchMedia("(prefers-reduced-motion: reduce)").matches}catch(e){}try{ASP=localStorage.getItem("sonic-anim")||"fast"}catch(e){}if(ASP==="off")RM=true;document.documentElement.classList.toggle("af",ASP==="fast");document.documentElement.classList.toggle("ao",ASP==="off");
+var RM=false,ASP="full";try{RM=matchMedia("(prefers-reduced-motion: reduce)").matches}catch(e){}try{ASP=localStorage.getItem("sonic-anim2")||"full"}catch(e){}if(ASP==="off")RM=true;document.documentElement.classList.toggle("af",ASP==="fast");document.documentElement.classList.toggle("ao",ASP==="off");
 function AT(full,fast){return ASP==="fast"?fast:full}
 function countUp(el){if(PRIV||RM)return;var t=el.textContent,m=t.match(/\d[\d\u202f\u00a0 ]*(?:,\d+)?/);if(!m)return;var s0=m[0].replace(/[\u202f\u00a0 ]+$/,""),raw=s0.replace(/[\u202f\u00a0 ]/g,""),dec=(raw.split(",")[1]||"").length,v=parseFloat(raw.replace(",","."));if(!(v>0))return;
  var pre=t.slice(0,m.index),post=t.slice(m.index+s0.length),t0=performance.now(),D=AT(950,420),last=null;
@@ -859,7 +859,7 @@ function toast(t,fn){$("toastT").textContent=t;undoFn=fn||null;$("toastB").hidde
 function delTx(id){if(RO)return;var k=-1;S.tx.forEach(function(t,i){if(String(t.id)===String(id))k=i});if(k<0)return;var x=S.tx.splice(k,1)[0];DELS[x.id]=1;save();render();toast("Opération supprimée",function(){delete DELS[x.id];S.tx.splice(k,0,x);save();render()})}
 $("toastB").onclick=function(){if(undoFn)undoFn();undoFn=null;$("toast").hidden=true;clearTimeout(toastT)};
 $("fDel").onclick=function(){var id=edId;$("mAdd").hidden=true;edId=null;delTx(id)};
-function anSeg(){seg("anS",[["full","Complètes"],["fast","Rapides"],["off","Aucune"]],ASP,function(v){ASP=v;try{localStorage.setItem("sonic-anim",v)}catch(e){}var rm=false;try{rm=matchMedia("(prefers-reduced-motion: reduce)").matches}catch(e){}RM=v==="off"||rm;document.documentElement.classList.toggle("af",v==="fast");document.documentElement.classList.toggle("ao",v==="off");anSeg();toast(v==="off"?"Animations désactivées":v==="fast"?"Animations rapides":"Animations complètes")})}
+function anSeg(){seg("anS",[["full","Normales"],["fast","Rapides"],["off","Aucune"]],ASP,function(v){ASP=v;try{localStorage.setItem("sonic-anim2",v)}catch(e){}var rm=false;try{rm=matchMedia("(prefers-reduced-motion: reduce)").matches}catch(e){}RM=v==="off"||rm;document.documentElement.classList.toggle("af",v==="fast");document.documentElement.classList.toggle("ao",v==="off");anSeg();toast(v==="off"?"Animations désactivées":v==="fast"?"Animations rapides":"Animations normales")})}
 $("bSet").onclick=function(){anSeg();$("avX").hidden=!MYS.avatar;applyAcc();open("mSet")};
 var TAB="home";
 var TC={home:"#a78bfa",hist:"#38bdf8",budget:"#f5b83d",goals:"#34d399"},HG="Bonjour",HS="",HD={hist:["Historique","Toutes tes opérations, mois par mois."],budget:["Budget","Garde le contrôle sur tes dépenses."],goals:["Objectifs","Mets de côté pour ce qui compte."]},HN={home:"ACCUEIL",hist:"HISTORIQUE",budget:"BUDGET",goals:"OBJECTIFS"};
